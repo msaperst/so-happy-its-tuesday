@@ -10,3 +10,4 @@ Need to:
   - Hareguide
   - Mis-management
   - Links
+- Add admin section
