@@ -168,7 +168,6 @@
                 <div class="col-lg-12 text-center">
                     <h2>Announcements</h2>
                     <hr class="star-primary">
-                    Need to add events in here, and make it more dynamic
                     <div class='text-left'>
                     	<ul>
                             <?php
@@ -193,6 +192,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Events</h2>
+                    Need to add events in here, and make it more dynamic
                     <hr class="star-light">
                     <div class='text-left'>
                         <h3>April 2016</h3>
@@ -280,6 +280,9 @@
             <i class="fa fa-chevron-up"></i>
         </a>
     </div>
+    
+    <?php require "footer.php"; ?>
+    
 </body>
 
 <?php mysqli_close($db); ?>
