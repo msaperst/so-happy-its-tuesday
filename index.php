@@ -195,8 +195,7 @@
                     Need to add events in here, and make it more dynamic
                     <hr class="star-light">
                     <div class='text-left'>
-                        <h3>April 2016</h3>
-                        <?php echo draw_calendar(4,2016); ?>
+                    	<div id='event-calendar' style='color:black'></div>
    					</div>
                 </div>
             </div>
@@ -282,6 +281,11 @@
     </div>
     
     <?php require "footer.php"; ?>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.0/fullcalendar.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.0/fullcalendar.min.css" rel="stylesheet" type="text/css">
+    <script src="js/custom.js"></script>
+    <link href="css/custom.css" rel="stylesheet" type="text/css">
     
 </body>
 

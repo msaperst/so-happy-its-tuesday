@@ -26,7 +26,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-        <!-- jQuery -->
+    <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -43,5 +43,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
+    
+    <!-- Moment -->
+    <script src="js/moment.min.js"></script>
 
 </head>
