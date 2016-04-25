@@ -205,9 +205,9 @@
 	                    	</ul>
 	                    	<div class='text-left'>
 	                    		<p><b>Description</b>: <?php echo $nextWeek['description']; ?></p>
-	                    		<p><b>Address</b>: <a href='<?php echo $nextWeek['map']; ?>' target='_blank'><?php echo $nextWeek['address']; ?></a></p>
+	                    		<p><b>Start Address</b>: <a href='<?php echo $nextWeek['map']; ?>' target='_blank'><?php echo $nextWeek['address']; ?></a></p>
 	                    		<p><b>D'erections</b>: <?php echo $nextWeek['directions']; ?></p>
-	                    		<p><b>OnOnOn</b>: <a href='<?php echo $nextWeek['map']; ?>' target='_blank'><?php echo $nextWeek['ononon']; ?></a></p>
+	                    		<p><b>OnOnOn Address</b>: <a href='<?php echo $nextWeek['map']; ?>' target='_blank'><?php echo $nextWeek['ononon']; ?></a></p>
 	                    		<p><b>Notes</b>: <?php echo $nextWeek['notes']; ?></p>
 	                    	</div>
 	                    	<hr>
@@ -225,7 +225,7 @@
     	$result = mysqli_query($db, $sql);
     	while ( $row = mysqli_fetch_array($result) ) {
     ?>
-    <div class="portfolio-modal modal fade" id="announcement<?php echo $row["ID"]; ?>" tabindex="-1" role="dialog" aria-hidden="true" style="background-image:url('img/<?php echo $nextWeek['image']; ?>');">
+    <div class="portfolio-modal modal fade" id="announcement<?php echo $row["ID"]; ?>" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -252,7 +252,56 @@
     </div>
     <?php
     	}
-    ?>  
+    ?>
+    
+    <!-- Add trail/event modal -->
+    <?php 
+        if( isset( $_SESSION['id'] ) ) {
+    ?>
+    <div class="portfolio-modal modal fade" id="newEvent" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                    	<h2>Add <select id='add-what'><option value='e'>Event</option><option value='t'>Trail</option></select></h2>
+                    	<hr/>
+                        <div class="modal-body">
+							<h2><span id='trail-title'>Trail <input id='number' type='number' value='' />: </span><input id='title' type='text' value='' placeholder='Title' /></h2>
+                            <hr class="star-primary">
+	                    	<h4 id='trail-hares'>Hares: <div name='hares' id='hares'></div><input type='text' value='' placeholder='Find a hare' class='searcher' /></h3>
+	                    	<ul class="list-inline item-details">
+	                    		<li><b>Location</b>: <input id='location' type='text' value='' /></li>
+	                    		<li><b>Date</b>: <input id='date' type='date' value='' /></li>
+	                    		<li><b>Time</b>: <input id='time' type='time' value='' /></li>
+	                    	</ul>
+	                    	<ul id='trail-map' class="list-inline item-details">
+	                    		<li><b>Map Link</b>: <input id='map' type='text' value='' /></li>
+	                    	</ul>
+	                    	<div class='text-left'>
+	                    		<p><b>Description</b>: <textarea id='description'></textarea></p>
+	                    		<p><b>Start Address</b>: <textarea id='start'></textarea></p>
+	                    		<p><b>D'erections</b>: <textarea id='directions'></textarea></p>
+	                    		<p id='trail-ononon'><b>OnOnOn Address</b>: <textarea id='ononon'></textarea></p>
+	                    		<p id='trail-notes'><b>Notes</b>: <textarea id='notes'></textarea></p>
+	                    	</div>
+	                    	<hr>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            <button id='new-event-save' type="button" class="btn btn-default"><i class="fa fa-save"></i> Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+        }
+    ?>
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll visible-xs visible-sm">
