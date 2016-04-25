@@ -2,3 +2,23 @@
 	background-color:white !important;
 	color:black !important;
 }
+
+div#login-container {
+	position: absolute;
+    z-index: 99999;
+    width: 100%;
+    top: 100px;
+    display: none;
+}
+div#login-holder {
+	background-color: white;
+	padding: 15px;
+}
+div#login-error {
+	color: red;
+	font-weight: bold;
+}
+div#login-message {
+	color: green;
+	font-weight: bold;
+}

@@ -2,6 +2,15 @@
     $url = $_SERVER['REQUEST_URI'];
     $url = substr($url, 1);
     
+    session_name('shitLogin');
+    // Starting the session
+    
+    session_set_cookie_params(2*7*24*60*60);
+    // Making the cookie live for 2 weeks
+    
+    session_start();
+    
+    print_r( $_SESSION );
 ?>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -60,8 +69,18 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="page-scroll">
-                        <a href="javascript:void(0);"><i class="fa fa-sign-in"></i>Login</a>
+                    <li>
+                    	<?php
+                    	    if( ! isset( $_SESSION['id'] ) ) {
+                    	?>
+                        <a id='login-button' href="javascript:void(0);"><i class="fa fa-sign-in"></i>Login</a>
+                        <?php 
+                       	    } else {
+               	        ?>
+                        <a id='logout-button' href="javascript:void(0);"><i class="fa fa-sign-out"></i>Logout (<?php echo $_SESSION['usr']; ?>)</a>               	        
+               	        <?php 
+                       	    }
+                        ?>
                     </li>
                 </ul>
             </div>
@@ -69,3 +88,24 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+    
+    <div class="container" id="login-container">
+        <div class="row">
+            <div id='login-holder' class="col-md-offset-5 col-md-3">
+                <div class="form-login">
+                <div id='login-error'></div>
+                <div id='login-message'></div>
+                <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />
+                </br>
+                <input type="password" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
+                </br>
+                <div class="wrapper">
+                <span class="group-btn">     
+                    <a id='login-submit' href="#" class="btn btn-primary btn-md">Login <i class="fa fa-sign-in"></i></a>
+                </span>
+                </div>
+                </div>
+            
+            </div>
+        </div>
+	</div>

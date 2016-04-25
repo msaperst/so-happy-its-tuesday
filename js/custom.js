@@ -1,17 +1,30 @@
 $(document).ready(function() {
 
-    // page is now ready, initialize the calendar...
+    $('#login-button').click(function() {
+        $('#login-container').show();
+    });
 
-    $('#event-calendar').fullCalendar({
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        events: {
-            url: '/php/events.php',
-            cache: true
-        }
+    $('#login-submit').click(function() {
+        $.post("php/login.php", {
+            username : $('#userName').val(),
+            password : $('#userPassword').val(),
+            rememberMe : "true",
+            submit : "Login"
+        }).done(function(data) {
+            $('#login-error').html(data);
+            if(data == "") {
+                $('#login-message').html("Successfully Logged In");
+                location.reload();
+            }
+        });
+    });
+    
+    $('#logout-button').click(function() {
+        $.post("php/login.php", {
+            submit : "Logout"
+        }).done(function(data) {
+            location.reload();
+        });
     });
 
 });
