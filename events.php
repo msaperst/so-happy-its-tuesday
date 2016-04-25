@@ -178,7 +178,6 @@
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2>Events</h2>
-					Need to add events in here, and make it more dynamic
 					<hr class="star-primary">
 					<div class='text-left'>
 						<div id='event-calendar' style='color: black'></div>
