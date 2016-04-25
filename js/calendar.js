@@ -119,7 +119,47 @@ $(document).ready(function() {
         }
     });
     $('#new-event-save').click(function(){
-        alert('save functionality doesn\'t work yet');
+        var json = new Object();
+        if( $("#add-what").val() == "t" ) {
+            //add our simple values
+            json.trail_id = $('#number').val();
+            json.trail_title = $('#title').val();
+            json.trail_location = $('#location').val();
+            json.trail_date = $('#date').val();
+            json.trail_maplink = $('#map').val();
+            json.trail_tidbit = $('#description').val();
+            json.trail_address = $('#start').val();
+            json.trail_directions = $('#directions').val();
+            json.ononon = $('#ononon').val();
+            json.trail_notes = $('#notes').val();
+            //add all of the hares
+            var hares = new Array();
+            $('#hares span').each(function(){
+                hares.push( $(this).attr('hasherid') );
+            });
+            json.hares = hares;
+            $.ajax({
+                type: "POST",
+                url: "php/addTrail.php",
+                data: { data: json }
+            }).done(function(){
+                $('#event-calendar').fullCalendar( 'refetchEvents' );
+            });
+        } else {
+            json.title = $('#title').val();
+            json.date = $('#date').val();
+            json.time = $('#time').val();
+            json.location = $('#location').val();
+            json.description = $('#description').val();
+            json.directions = $('#directions').val();
+            $.ajax({
+                type: "POST",
+                url: "php/addEvent.php",
+                data: { data: json }
+            }).done(function(){
+                $('#event-calendar').fullCalendar( 'refetchEvents' );
+            });
+        }
         $('#newEvent').modal('hide');
     });
     

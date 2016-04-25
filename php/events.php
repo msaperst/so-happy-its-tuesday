@@ -60,6 +60,7 @@ while ( $row = mysqli_fetch_array ( $result ) ) {
     $id = "XXX";
     $title = "TBD";
     $date = "TBD";
+    $time = "TBD";
     $location = "TBD";
     $description = "TBD";
     $directions = "TBD";
@@ -76,6 +77,9 @@ while ( $row = mysqli_fetch_array ( $result ) ) {
         $daytime = $row ["DATE"];
         $date = date ( 'F j, Y', $date );
     }
+    if ($row ["TIME"] != "") {
+        $time = $row ["TIME"];
+    }
     if ($row ["LOCATION"] != "") {
         $location = $row ["LOCATION"];
     }
@@ -88,7 +92,7 @@ while ( $row = mysqli_fetch_array ( $result ) ) {
     
     $event = array ();
     $event ['title'] = "$title";
-    $event ['start'] = $daytime;
+    $event ['start'] = $daytime."T".$time;
     array_push ( $events, $event );
 }
 
