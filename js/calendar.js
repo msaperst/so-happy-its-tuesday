@@ -59,7 +59,6 @@ $(document).ready(function() {
             $('#viewEventModal').modal();
             $.get( "php/get-event.php", { id: calEvent.lookup_id, type: calEvent.type } ).done(function( data ) {
                 data = $.parseJSON( data );
-                console.log( data );
                 if( calEvent.type == "t" ) {    //if trail
                     $('#viewEventTitle').html("Trail " + data.ID + ": " + data.TITLE);
                     $('#viewEventHares').show();
@@ -166,7 +165,7 @@ $(document).ready(function() {
             json.hares = hares;
             $.ajax({
                 type: "POST",
-                url: "php/addTrail.php",
+                url: "php/add-trail.php",
                 data: { data: json }
             }).done(function(){
                 $('#event-calendar').fullCalendar( 'refetchEvents' );
@@ -180,7 +179,7 @@ $(document).ready(function() {
             json.directions = $('#directions').val();
             $.ajax({
                 type: "POST",
-                url: "php/addEvent.php",
+                url: "php/add-event.php",
                 data: { data: json }
             }).done(function(){
                 $('#event-calendar').fullCalendar( 'refetchEvents' );
