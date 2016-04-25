@@ -9,7 +9,7 @@ $(document).ready(function() {
             right: 'month,agendaWeek,agendaDay'
         },
         events: {
-            url: 'php/events.php',
+            url: 'php/get-events.php',
             cache: true
         },
         dayClick: function(date, jsEvent, view) {
@@ -56,12 +56,38 @@ $(document).ready(function() {
             }
         },
         eventClick: function(calEvent, jsEvent, view) {
-//            alert('Event: ' + calEvent.title);
-//            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-//            alert('View: ' + view.name);
-//
-//            // change the border color just for fun
-//            $(this).css('border-color', 'red');
+            $('#viewEventModal').modal();
+            $.get( "php/get-event.php", { id: calEvent.lookup_id, type: calEvent.type } ).done(function( data ) {
+                data = $.parseJSON( data );
+                console.log( data );
+                if( calEvent.type == "t" ) {    //if trail
+                    $('#viewEventTitle').html("Trail " + data.ID + ": " + data.TITLE);
+                    $('#viewEventHares').show();
+                    $('#viewEventHares').html("Hares: " + data.hares.join(", "));
+                    $('#viewEventLocation').html(data.LOCATION);
+                    $('#viewEventDate').html(data.date);
+                    $('#viewEventTime').html("7:00 PM");
+                    $('#viewEventDescription').html(data.TIDBIT);
+                    $('#viewEventStart').parent().show();
+                    $('#viewEventStart').html("<a href='" + data.MAPLINK + "' target='_blank'>" + data.ADDRESS + "</a>");
+                    $('#viewEventDirections').html(data.DIRECTIONS);
+                    $('#viewEventOnOnOn').parent().show();
+                    $('#viewEventOnOnOn').html("<a href='" + data.MAPLINK + "' target='_blank'>" + data.ONONON + "</a>");
+                    $('#viewEventNotes').parent().show()
+                    $('#viewEventNotes').html(data.NOTES);
+                } else {    //else event
+                    $('#viewEventTitle').html(data.TITLE);
+                    $('#viewEventHares').hide();
+                    $('#viewEventLocation').html(data.LOCATION);
+                    $('#viewEventDate').html(data.date);
+                    $('#viewEventTime').html(data.TIME);
+                    $('#viewEventDescription').html(data.DESCRIPTION);
+                    $('#viewEventStart').parent().hide();
+                    $('#viewEventDirections').html(data.DIRECTIONS);
+                    $('#viewEventOnOnOn').parent().hide();
+                    $('#viewEventNotes').parent().hide();
+                }
+            });
         }
     });
     

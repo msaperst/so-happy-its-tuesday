@@ -50,6 +50,8 @@ while ( $row = mysqli_fetch_array ( $result ) ) {
     $trail ['title'] = "Trail $number: $title";
     $trail ['start'] = $daytime . "T19:00:00";
     $trail ['end'] = $daytime . "T22:00:00";
+    $trail ['type'] = "t";
+    $trail ['lookup_id'] = $id;
     array_push ( $events, $trail );
 }
 
@@ -93,6 +95,8 @@ while ( $row = mysqli_fetch_array ( $result ) ) {
     $event = array ();
     $event ['title'] = "$title";
     $event ['start'] = $daytime."T".$time;
+    $event ['type'] = "e";
+    $event ['lookup_id'] = $id;
     array_push ( $events, $event );
 }
 
