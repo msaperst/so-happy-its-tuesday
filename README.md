@@ -9,6 +9,5 @@ Need to:
   - Hareguide
   - Mis-management
   - Links
-- Enable adding announcements
 - Enable editing 'events'
 - Fix announcements word being too long

@@ -154,18 +154,27 @@
 					<h2>Announcements</h2>
 					<hr class="star-light">
 					<div class='text-left'>
-						<ul>
+						<ul id='allAnnouncements'>
                             <?php
                             $sql = "SELECT * FROM shit_announcements WHERE DATE(FROMDATE) <= CURDATE() AND DATE(TODATE) >= CURDATE();";
                             $result = mysqli_query ( $db, $sql );
                             while ( $row = mysqli_fetch_array ( $result ) ) {
                                 echo "			<li class='loadAnnouncement' announcement='" . $row ["ID"] . "'>\n";
                                 echo $row ["TITLE"] . "\n";
-                                echo "</a></li>\n";
+                                echo "</li>\n";
                             }
                             ?>          
                     	</ul>
 					</div>
+					<?php
+                        if (isset ( $_SESSION ['id'] )) {
+                    ?>
+                    <button href="#newAnnouncementModal" data-toggle="modal" type="button" class="btn btn-default">
+						<i class="fa fa-add"></i> Add An Announcement
+					</button>
+                    <?php
+                        }
+                    ?>
 				</div>
 			</div>
 		</div>
@@ -290,8 +299,8 @@
     
     <!-- Add trail/event modal -->
     <?php
-    if (isset ( $_SESSION ['id'] )) {
-        ?>
+        if (isset ( $_SESSION ['id'] )) {
+    ?>
     <div class="portfolio-modal modal fade" id="newEvent" tabindex="-1"
 		role="dialog" aria-hidden="true">
 		<div class="modal-content">
@@ -366,9 +375,49 @@
 			</div>
 		</div>
 	</div>
+    
+    <!-- Add Announcement modal -->
+	<div class="portfolio-modal modal fade" id="newAnnouncementModal"
+		tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-content">
+			<div class="close-modal" data-dismiss="modal">
+				<div class="lr">
+					<div class="rl"></div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="modal-body">
+							<h2 id='newAnnouncementTitle'><input type='text'></h2>
+							<hr class="star-primary">
+							<ul id='newAnnouncementToFrom' class="list-inline item-details">
+								<li><b>Display From</b>: <input id='newAnnouncementFrom' type='date'/></li>
+								<li><b>Display To</b>: <input id='newAnnouncementTo' type='date'/></li>
+							</ul>
+							<div id='newAnnouncementDescription' class='text-left'><textarea></textarea></div>
+							<p>
+								<input id='newAnnouncementHiddenID' type='hidden' />
+							</p>
+							<hr>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">
+								<i class="fa fa-times"></i> Close
+							</button>
+                            <button id='newAnnouncementSave'
+								type="button" class="btn btn-default">
+								<i class="fa fa-save"></i> Save
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     <?php
-    }
+        }
     ?>
+    
     
     <!-- View Events From Calendar -->
 	<div class="portfolio-modal modal fade" id="viewEventModal"

@@ -194,6 +194,26 @@ $(document).ready(function() {
         }
         $('#newEvent').modal('hide');
     });
+    $('#newAnnouncementSave').click(function(){
+        $.ajax({
+            type: "POST",
+            url: "php/add-announcement.php",
+            data: { 
+                title: $('#newAnnouncementTitle input').val(),
+                description: $('#newAnnouncementDescription textarea').val(),
+                from: $('#newAnnouncementFrom').val(),
+                to: $('#newAnnouncementTo').val()
+            }
+        }).done(function(data){
+            var li = $('<li>');
+            li.addClass('loadAnnouncement');
+            li.attr('announcement',data);
+            li.html($('#newAnnouncementTitle input').val());
+            $('#allAnnouncements').append(li);
+            $('#newAnnouncementModal').modal('hide');
+            loadAnnouncement();
+        });
+    });
     $('#viewEventDelete').confirm({
         text: "Are you sure you want to delete this event?",
         title: "Confirmation required",
@@ -219,20 +239,6 @@ $(document).ready(function() {
         },
         confirmButton: "Yes I am",
         cancelButton: "No"
-    });
-    $(".loadAnnouncement").click(function(){
-        $('#viewAnnouncementModal').modal();
-        $('#viewAnnouncementEdit').removeClass('hidden');
-        $('#viewAnnouncementSave').addClass('hidden');
-        $('#viewAnnouncementToFrom').addClass('hidden');
-        $.get( "php/get-announcement.php", { id: $(this).attr('announcement') } ).done(function( data ) {
-            data = $.parseJSON( data );
-            $('#viewAnnouncementHiddenID').val(data.ID);
-            $('#viewAnnouncementTitle').html(data.TITLE);
-            $('#viewAnnouncementDescription').html(data.DESCRIPTION);
-            $('#viewAnnouncementFrom').val(data.FROMDATE);
-            $('#viewAnnouncementTo').val(data.TODATE);
-        });
     });
     $('#viewAnnouncementDelete').confirm({
         text: "Are you sure you want to delete this announcement?",
@@ -287,6 +293,7 @@ $(document).ready(function() {
                     to: $('#viewAnnouncementTo').val()
                 }
             }).done(function(){
+                $( "li[announcement='"+$('#viewAnnouncementHiddenID').val()+"']" ).html($('#viewAnnouncementTitle input').val());
                 $('#viewAnnouncementModal').modal('hide');                
             });
         },
@@ -296,9 +303,24 @@ $(document).ready(function() {
         confirmButton: "Yes I am",
         cancelButton: "No"
     });
-    
-    
+    loadAnnouncement();
 });
+function loadAnnouncement() {
+    $(".loadAnnouncement").click(function(){
+        $('#viewAnnouncementModal').modal();
+        $('#viewAnnouncementEdit').removeClass('hidden');
+        $('#viewAnnouncementSave').addClass('hidden');
+        $('#viewAnnouncementToFrom').addClass('hidden');
+        $.get( "php/get-announcement.php", { id: $(this).attr('announcement') } ).done(function( data ) {
+            data = $.parseJSON( data );
+            $('#viewAnnouncementHiddenID').val(data.ID);
+            $('#viewAnnouncementTitle').html(data.TITLE);
+            $('#viewAnnouncementDescription').html(data.DESCRIPTION);
+            $('#viewAnnouncementFrom').val(data.FROMDATE);
+            $('#viewAnnouncementTo').val(data.TODATE);
+        });
+    });
+}
 function addDeleteHasher() {
     $('.hasher input').click(function(){
         deleteHasher($(this).parent());
