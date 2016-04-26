@@ -59,7 +59,12 @@ $(document).ready(function() {
             $('#viewEventModal').modal();
             $.get( "php/get-event.php", { id: calEvent.lookup_id, type: calEvent.type } ).done(function( data ) {
                 data = $.parseJSON( data );
+                $('#viewEventHiddenID').val(data.ID);
+                $('#viewEventHiddenType').val(calEvent.type);
                 if( calEvent.type == "t" ) {    //if trail
+                    if( data.ID > 190 ) {
+                        data.ID--;
+                    }
                     $('#viewEventTitle').html("Trail " + data.ID + ": " + data.TITLE);
                     $('#viewEventHares').show();
                     $('#viewEventHares').html("Hares: " + data.hares.join(", "));
@@ -187,6 +192,33 @@ $(document).ready(function() {
         }
         $('#newEvent').modal('hide');
     });
+    $('#viewEventDelete').confirm({
+        text: "Are you sure you want to delete this event?",
+        title: "Confirmation required",
+        confirm: function(button) {
+            postUrl = "";
+            if( $('#viewEventHiddenType').val() == "t" ) {
+                postUrl = "delete-trail.php";
+            }
+            if( $('#viewEventHiddenType').val() == "e" ) {
+                postUrl = "delete-event.php";
+            }
+            $.ajax({
+                type: "POST",
+                url: "php/" + postUrl,
+                data: { id: $('#viewEventHiddenID').val() }
+            }).done(function(){
+                $('#event-calendar').fullCalendar( 'refetchEvents' );
+                $('#viewEventModal').modal('hide');                
+            });
+        },
+        cancel: function(button) {
+            // nothing to do
+        },
+        confirmButton: "Yes I am",
+        cancelButton: "No"
+    });
+    
     
 });
 function addDeleteHasher() {

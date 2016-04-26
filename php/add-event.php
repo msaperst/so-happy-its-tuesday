@@ -1,4 +1,5 @@
 <?php
+
 require "sql.php";
 
 $new = $_POST ['data'];
