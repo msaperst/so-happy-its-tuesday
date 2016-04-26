@@ -257,6 +257,7 @@ $(document).ready(function() {
     $('#viewEventEdit').click(function(){
         $(this).addClass('hidden');
         $('#viewEventSave').removeClass('hidden');
+        //TODO - need to finish this editable
     });
     $('#viewAnnouncementEdit').click(function(){
         $(this).addClass('hidden');
@@ -271,6 +272,31 @@ $(document).ready(function() {
         descriptionInput.val(oldDescription);
         $('#viewAnnouncementDescription').html(descriptionInput);
     });
+    $('#viewAnnouncementSave').confirm({
+        text: "Are you sure you want to save your changes to this announcement?",
+        title: "Confirmation required",
+        confirm: function(button) {
+            $.ajax({
+                type: "POST",
+                url: "php/update-announcement.php",
+                data: { 
+                    id: $('#viewAnnouncementHiddenID').val(),
+                    title: $('#viewAnnouncementTitle input').val(),
+                    description: $('#viewAnnouncementDescription textarea').val(),
+                    from: $('#viewAnnouncementFrom').val(),
+                    to: $('#viewAnnouncementTo').val()
+                }
+            }).done(function(){
+                $('#viewAnnouncementModal').modal('hide');                
+            });
+        },
+        cancel: function(button) {
+            // nothing to do
+        },
+        confirmButton: "Yes I am",
+        cancelButton: "No"
+    });
+    
     
 });
 function addDeleteHasher() {
