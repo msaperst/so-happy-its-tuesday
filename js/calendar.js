@@ -57,6 +57,8 @@ $(document).ready(function() {
         },
         eventClick: function(calEvent, jsEvent, view) {
             $('#viewEventModal').modal();
+            $('#viewEventEdit').removeClass('hidden');
+            $('#viewEventSave').addClass('hidden');
             $.get( "php/get-event.php", { id: calEvent.lookup_id, type: calEvent.type } ).done(function( data ) {
                 data = $.parseJSON( data );
                 $('#viewEventHiddenID').val(data.ID);
@@ -218,7 +220,57 @@ $(document).ready(function() {
         confirmButton: "Yes I am",
         cancelButton: "No"
     });
-    
+    $(".loadAnnouncement").click(function(){
+        $('#viewAnnouncementModal').modal();
+        $('#viewAnnouncementEdit').removeClass('hidden');
+        $('#viewAnnouncementSave').addClass('hidden');
+        $('#viewAnnouncementToFrom').addClass('hidden');
+        $.get( "php/get-announcement.php", { id: $(this).attr('announcement') } ).done(function( data ) {
+            data = $.parseJSON( data );
+            $('#viewAnnouncementHiddenID').val(data.ID);
+            $('#viewAnnouncementTitle').html(data.TITLE);
+            $('#viewAnnouncementDescription').html(data.DESCRIPTION);
+            $('#viewAnnouncementFrom').val(data.FROMDATE);
+            $('#viewAnnouncementTo').val(data.TODATE);
+        });
+    });
+    $('#viewAnnouncementDelete').confirm({
+        text: "Are you sure you want to delete this announcement?",
+        title: "Confirmation required",
+        confirm: function(button) {
+            postUrl = "";
+            $.ajax({
+                type: "POST",
+                url: "php/delete-announcement.php",
+                data: { id: $('#viewAnnouncementHiddenID').val() }
+            }).done(function(){
+                $( "li[announcement='"+$('#viewAnnouncementHiddenID').val()+"']" ).remove();
+                $('#viewAnnouncementModal').modal('hide');                
+            });
+        },
+        cancel: function(button) {
+            // nothing to do
+        },
+        confirmButton: "Yes I am",
+        cancelButton: "No"
+    });
+    $('#viewEventEdit').click(function(){
+        $(this).addClass('hidden');
+        $('#viewEventSave').removeClass('hidden');
+    });
+    $('#viewAnnouncementEdit').click(function(){
+        $(this).addClass('hidden');
+        $('#viewAnnouncementSave').removeClass('hidden');
+        $('#viewAnnouncementToFrom').removeClass('hidden');
+        var oldTitle = $('#viewAnnouncementTitle').html();
+        var oldDescription = $('#viewAnnouncementDescription').html();
+        var titleInput = $("<input>");
+        titleInput.val(oldTitle);
+        $('#viewAnnouncementTitle').empty().append(titleInput);
+        var descriptionInput = $("<textarea>");
+        descriptionInput.val(oldDescription);
+        $('#viewAnnouncementDescription').html(descriptionInput);
+    });
     
 });
 function addDeleteHasher() {

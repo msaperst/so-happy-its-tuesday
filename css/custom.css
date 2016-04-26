@@ -61,3 +61,12 @@ input#number {
 input#map {
 	width: 560px;
 }
+
+.hidden {
+	display: none;
+}
+
+//for our annoucements
+li.loadAnnouncement {
+	cursor: pointer;
+}

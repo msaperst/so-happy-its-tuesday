@@ -159,11 +159,11 @@
                             $sql = "SELECT * FROM shit_announcements WHERE DATE(FROMDATE) <= CURDATE() AND DATE(TODATE) >= CURDATE();";
                             $result = mysqli_query ( $db, $sql );
                             while ( $row = mysqli_fetch_array ( $result ) ) {
-                                echo "			<li><a href='#announcement" . $row ["ID"] . "' class='portfolio-link' data-toggle='modal'>\n";
+                                echo "			<li class='loadAnnouncement' announcement='" . $row ["ID"] . "'>\n";
                                 echo $row ["TITLE"] . "\n";
                                 echo "</a></li>\n";
                             }
-                            ?>                    	
+                            ?>          
                     	</ul>
 					</div>
 				</div>
@@ -234,15 +234,9 @@
 		</div>
 	</div>
 
-	<!-- Announcements modal expansion -->
-    <?php
-    $sql = "SELECT * FROM shit_announcements WHERE DATE(FROMDATE) <= CURDATE() AND DATE(TODATE) >= CURDATE();";
-    $result = mysqli_query ( $db, $sql );
-    while ( $row = mysqli_fetch_array ( $result ) ) {
-        ?>
-    <div class="portfolio-modal modal fade"
-		id="announcement<?php echo $row["ID"]; ?>" tabindex="-1" role="dialog"
-		aria-hidden="true">
+	<!-- Announcement modal expansion -->
+	<div class="portfolio-modal modal fade" id="viewAnnouncementModal"
+		tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-content">
 			<div class="close-modal" data-dismiss="modal">
 				<div class="lr">
@@ -253,25 +247,46 @@
 				<div class="row">
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="modal-body">
-							<h2><?php echo $row["TITLE"] ?></h2>
+							<h2 id='viewAnnouncementTitle'></h2>
 							<hr class="star-primary">
-							<div class='text-left'>
-	                    		<?php echo $row["DESCRIPTION"]; ?>
-	                    	</div>
+							<ul id='viewAnnouncementToFrom' class="list-inline item-details hidden">
+								<li><b>Display From</b>: <input id='viewAnnouncementFrom' type='date'/></li>
+								<li><b>Display To</b>: <input id='viewAnnouncementTo' type='date'/></li>
+							</ul>
+							<div id='viewAnnouncementDescription' class='text-left'></div>
+							<p>
+								<input id='viewAnnouncementHiddenID' type='hidden' />
+							</p>
 							<hr>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">
 								<i class="fa fa-times"></i> Close
 							</button>
+							    <?php
+        if (isset ( $_SESSION ['id'] )) {
+            ?>
+                            <button id='viewAnnouncementEdit'
+								type="button" class="btn btn-default">
+								<i class="fa fa-edit"></i> Edit
+							</button>
+                            <button id='viewAnnouncementSave'
+								type="button" class="btn btn-default hidden">
+								<i class="fa fa-save"></i> Save
+							</button>
+							<button id='viewAnnouncementDelete' type="button"
+								class="btn btn-default">
+								<i class="fa fa-trash"></i> Delete
+							</button>
+                            <?php
+        }
+        ?>
+							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-    <?php
-    }
-    ?>
     
     <!-- Add trail/event modal -->
     <?php
@@ -407,8 +422,12 @@
     <?php
     if (isset ( $_SESSION ['id'] )) {
         ?>
-                            <button id='viewEventSave' type="button"
+                            <button id='viewEventEdit' type="button"
 								class="btn btn-default">
+								<i class="fa fa-edit"></i> Edit
+							</button>
+                            <button id='viewEventSave' type="button"
+								class="btn btn-default hidden">
 								<i class="fa fa-save"></i> Save
 							</button>
 							<button id='viewEventDelete' type="button"

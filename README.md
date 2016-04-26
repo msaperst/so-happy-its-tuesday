@@ -1,7 +1,6 @@
 # SHIT Website 2.0
 
 Need to:
-- Make calendar events clickable
 - 'Open' Tuesdays up to 2 months out, make sign upabled (in a different color)
 - Add Pages/Viewable
   - Trash
@@ -10,4 +9,7 @@ Need to:
   - Hareguide
   - Mis-management
   - Links
-- Add admin section
+- Enable adding announcements
+- Enable editing announcements
+- Enable editing 'events'
+- Fix announcements word being too long
