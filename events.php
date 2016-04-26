@@ -11,18 +11,18 @@
     
     <!-- Page Header -->
 	<!-- Set your background image for this header on the line below. -->
-<!-- 	<header class="intro-header" style="background-image: url('img/group.jpg'); background-position-x: 50%; background-position-y: 30%; min-height: 550px;"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"> -->
-<!-- 					<div class="site-heading"> -->
-<!-- 						<h1>So Happy It's Tuesday</h1> -->
-<!-- 						<h3>Hash House Harriers</h3> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</header> -->
+	<!-- 	<header class="intro-header" style="background-image: url('img/group.jpg'); background-position-x: 50%; background-position-y: 30%; min-height: 550px;"> -->
+	<!-- 		<div class="container"> -->
+	<!-- 			<div class="row"> -->
+	<!-- 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"> -->
+	<!-- 					<div class="site-heading"> -->
+	<!-- 						<h1>So Happy It's Tuesday</h1> -->
+	<!-- 						<h3>Hash House Harriers</h3> -->
+	<!-- 					</div> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 	</header> -->
     
     <?php
     // defaults
@@ -392,8 +392,12 @@
 								<p>
 									<b>Notes</b>: <span id='viewEventNotes'></span>
 								</p>
-								<p><input id='viewEventHiddenID' type='hidden' /></p>
-								<p><input id='viewEventHiddenType' type='hidden' /></p>
+								<p>
+									<input id='viewEventHiddenID' type='hidden' />
+								</p>
+								<p>
+									<input id='viewEventHiddenType' type='hidden' />
+								</p>
 							</div>
 							<hr>
 							<button type="button" class="btn btn-default"
@@ -407,7 +411,7 @@
 								class="btn btn-default">
 								<i class="fa fa-save"></i> Save
 							</button>
-                            <button id='viewEventDelete' type="button"
+							<button id='viewEventDelete' type="button"
 								class="btn btn-default">
 								<i class="fa fa-trash"></i> Delete
 							</button>
