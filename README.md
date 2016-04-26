@@ -10,6 +10,5 @@ Need to:
   - Mis-management
   - Links
 - Enable adding announcements
-- Enable editing announcements
 - Enable editing 'events'
 - Fix announcements word being too long
