@@ -10,4 +10,3 @@ Need to:
   - Mis-management
   - Links
 - Enable editing 'events'
-- Fix announcements word being too long

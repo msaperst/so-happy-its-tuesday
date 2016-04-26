@@ -151,7 +151,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<h2>Announcements</h2>
+					<h2>News</h2>
 					<hr class="star-light">
 					<div class='text-left'>
 						<ul id='allAnnouncements'>
