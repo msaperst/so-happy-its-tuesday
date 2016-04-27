@@ -9,4 +9,3 @@ Need to:
   - Hareguide
   - Mis-management
   - Links
-- Enable editing 'events'

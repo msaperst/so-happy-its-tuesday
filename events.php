@@ -2,7 +2,6 @@
 <html lang="en">
 
 <?php require "php/sql.php"; ?>
-<?php include "php/calendar.php"; ?>
 <?php require "header.php"; ?>
 
 <body id="page-top" class="index">
@@ -327,9 +326,9 @@
 							<hr class="star-primary">
 							<h4 id='trail-hares'>
 								Hares:
-								<div name='hares' id='hares'></div>
-								<input type='text' value='' placeholder='Find a hare'
-									class='searcher' />
+								<span name='hares' id='hares'></span>
+								<div><input type='text' value='' placeholder='Find a hare'
+									class='searcher' /></div>
 							</h4>
 							<ul class="list-inline item-details">
 								<li><b>Location</b>: <input id='location' type='text' value='' /></li>
@@ -434,11 +433,18 @@
 						<div class="modal-body">
 							<h2 id='viewEventTitle'></h2>
 							<hr class="star-primary">
-							<h4 id='viewEventHares'></h4>
-							<ul class="list-inline item-details">
+							<h4>Hares: 
+								<span name='viewEventHares' id='viewEventHares'></span>
+								<div class='hidden'><input type='text' value='' placeholder='Find a hare'
+										class='searcher' /></div>
+							</h4>
+							<ul id='viewEventDetailsList' class="list-inline item-details">
 								<li><b>Location</b>: <span id='viewEventLocation'></span></li>
 								<li><b>Date</b>: <span id='viewEventDate'></span></li>
 								<li><b>Time</b>: <span id='viewEventTime'></span></li>
+							</ul>
+							<ul id='viewEventDetailsList2' class="list-inline item-details hidden">
+								<li><b>Map Link</b>: <span id='viewEventMap'></span></li>
 							</ul>
 							<div class='text-left'>
 								<p>
@@ -507,7 +513,7 @@
 	<link
 		href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.0/fullcalendar.min.css"
 		rel="stylesheet" type="text/css">
-	<script src="js/calendar.js"></script>
+	<script src="js/events.js"></script>
 	<script src="js/jquery.confirm.min.js"></script>
 
 </body>

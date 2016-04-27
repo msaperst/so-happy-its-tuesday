@@ -59,24 +59,32 @@ $(document).ready(function() {
             $('#viewEventModal').modal();
             $('#viewEventEdit').removeClass('hidden');
             $('#viewEventSave').addClass('hidden');
+            $('#viewEventHares').next().addClass('hidden');
+            $('#viewEventDetailsList2').addClass('hidden');
             $.get( "php/get-event.php", { id: calEvent.lookup_id, type: calEvent.type } ).done(function( data ) {
                 data = $.parseJSON( data );
                 $('#viewEventHiddenID').val(data.ID);
                 $('#viewEventHiddenType').val(calEvent.type);
+                $('#viewEventLocation').html(data.LOCATION);
+                $('#viewEventDate').html(data.date);
+                $('#viewEventDirections').html(data.DIRECTIONS);
                 if( calEvent.type == "t" ) {    //if trail
                     if( data.ID > 190 ) {
                         data.ID--;
                     }
-                    $('#viewEventTitle').html("Trail " + data.ID + ": " + data.TITLE);
+                    $('#viewEventTitle').html("Trail <span id='viewEventTitleNumber'>" + data.ID + "</span>: <span id='viewEventTitleTitle'>" + data.TITLE + "</span>");
+                    var hares = "";
+                    $.each( data.HARE_ID, function( id, hasher ) {
+                        hares += "<span class='viewHasher' hasherid='" + id + "'>" + hasher + "</span><span class='spacer'>, </span>";
+                    });
+                    hares = hares.slice(0, -30);
+                    $('#viewEventHares').html(hares);
                     $('#viewEventHares').show();
-                    $('#viewEventHares').html("Hares: " + data.hares.join(", "));
-                    $('#viewEventLocation').html(data.LOCATION);
-                    $('#viewEventDate').html(data.date);
-                    $('#viewEventTime').html("7:00 PM");
+                    $('#viewEventTime').html("19:00");
+                    $('#viewEventMap').html(data.MAPLINK);
                     $('#viewEventDescription').html(data.TIDBIT);
                     $('#viewEventStart').parent().show();
                     $('#viewEventStart').html("<a href='" + data.MAPLINK + "' target='_blank'>" + data.ADDRESS + "</a>");
-                    $('#viewEventDirections').html(data.DIRECTIONS);
                     $('#viewEventOnOnOn').parent().show();
                     $('#viewEventOnOnOn').html("<a href='" + data.MAPLINK + "' target='_blank'>" + data.ONONON + "</a>");
                     $('#viewEventNotes').parent().show()
@@ -84,12 +92,9 @@ $(document).ready(function() {
                 } else {    //else event
                     $('#viewEventTitle').html(data.TITLE);
                     $('#viewEventHares').hide();
-                    $('#viewEventLocation').html(data.LOCATION);
-                    $('#viewEventDate').html(data.date);
                     $('#viewEventTime').html(data.TIME);
                     $('#viewEventDescription').html(data.DESCRIPTION);
                     $('#viewEventStart').parent().hide();
-                    $('#viewEventDirections').html(data.DIRECTIONS);
                     $('#viewEventOnOnOn').parent().hide();
                     $('#viewEventNotes').parent().hide();
                 }
@@ -112,7 +117,7 @@ $(document).ready(function() {
             $('.item').click(function() {
                 var hasher = $(this).html();
                 var hasherid = $(this).attr( 'hasherid' );
-                $('#hares').append( "<span class='hasher' hasherid='" + hasherid + "'>" + hasher + " <input type='submit' value='X' /></span>" );                
+                $(search_ele.parent().prev()).append( "<span class='hasher' hasherid='" + hasherid + "'>" + hasher + " <input type='submit' value='X' /></span>" );                
                 search_ele.val('');
 //                hareChange();
                 addDeleteHasher();
@@ -263,7 +268,141 @@ $(document).ready(function() {
     $('#viewEventEdit').click(function(){
         $(this).addClass('hidden');
         $('#viewEventSave').removeClass('hidden');
-        //TODO - need to finish this editable
+
+        //setup our editable data
+        var editLocation = $('<input>');
+        editLocation.attr('id', 'editEventLocation');
+        editLocation.val($('#viewEventLocation').html());
+        $('#viewEventLocation').empty().append(editLocation);
+
+        var myDate = new Date($('#viewEventDate').html());
+        myDate = myDate.getFullYear() + '-'
+                + ('0' + (myDate.getMonth()+1)).slice(-2) + '-'
+                + ('0' + myDate.getDate()).slice(-2);
+        var editDate = $('<input>');
+        editDate.attr('id', 'editEventDate');
+        editDate.attr('type', 'date');
+        editDate.val(myDate);
+        $('#viewEventDate').empty().append(editDate);
+
+        var editTime = $('<input>');
+        editTime.attr('id', 'editEventTime');
+        editTime.attr('type', 'time');
+        editTime.val($('#viewEventTime').html());
+        $('#viewEventTime').empty().append(editTime);
+        
+        var editDescription = $('<textarea>');
+        editDescription.attr('id', 'editEventDescription');
+        editDescription.val($('#viewEventDescription').html());
+        $('#viewEventDescription').empty().append(editDescription);
+
+        var editDirections = $('<textarea>');
+        editDirections.attr('id', 'editEventDirections');
+        editDirections.val($('#viewEventDirections').html());
+        $('#viewEventDirections').empty().append(editDirections);
+        
+        if( $('#viewEventHiddenType').val() == "t" ) {   //if it's a trail
+            var editNumber = $('<input>');
+            editNumber.attr('id', 'editEventNumber');
+            editNumber.attr('type', 'number');
+            editNumber.width('100px');
+            editNumber.val($('#viewEventTitleNumber').html());
+            $('#viewEventTitleNumber').empty().append(editNumber);
+            var editTitle = $('<input>');
+            editTitle.attr('id', 'editEventTitle');
+            editTitle.val($('#viewEventTitleTitle').html());
+            $('#viewEventTitleTitle').empty().append(editTitle);
+            
+            $('#viewEventHares').next().removeClass('hidden');
+            $('.viewHasher').each(function(){
+                $(this).addClass('hasher');
+                $(this).append("<input type='submit' value='X'>");
+                
+            });
+            $('.spacer').each(function(){
+                $(this).hide();
+            });
+            addDeleteHasher();
+            
+            var editMap = $('<input>');
+            editMap.attr('id', 'editEventMap');
+            editMap.width('560px');
+            editMap.val($('#viewEventMap').html());
+            $('#viewEventMap').empty().append(editMap);
+            $('#viewEventDetailsList2').removeClass('hidden');
+            
+            var editStart = $('<textarea>');
+            editStart.attr('id', 'editEventStart');
+            editStart.val($('#viewEventStart a').html());
+            $('#viewEventStart').empty().append(editStart);
+            
+            var editOnOnOn = $('<textarea>');
+            editOnOnOn.attr('id', 'editEventOnOnOn');
+            editOnOnOn.val($('#viewEventOnOnOn a').html());
+            $('#viewEventOnOnOn').empty().append(editOnOnOn);
+            
+            var editNotes = $('<textarea>');
+            editNotes.attr('id', 'editEventNotes');
+            editNotes.val($('#viewEventNotes').html());
+            $('#viewEventNotes').empty().append(editNotes);
+        } else {
+            var editTitle = $('<input>');
+            editTitle.attr('id', 'editEventTitle');
+            editTitle.val($('#viewEventTitle').html());
+            $('#viewEventTitle').empty().append(editTitle);
+        }
+    });
+    $('#viewEventSave').confirm({
+        text: "Are you sure you want to save your changes to this event?",
+        title: "Confirmation required",
+        confirm: function(button) {
+            var postUrl = "";
+            var json = new Object();
+            if( $('#viewEventHiddenType').val() == "t" ) {
+                postUrl = "update-trail.php";
+                //add our simple values
+                json.trail_id = $('#editEventNumber').val();
+                json.trail_title = $('#editEventTitle').val();
+                json.trail_location = $('#editEventLocation').val();
+                json.trail_date = $('#editEventDate').val();
+                json.trail_maplink = $('#editEventMap').val();
+                json.trail_tidbit = $('#editEventDescription').val();
+                json.trail_address = $('#editEventStart').val();
+                json.trail_directions = $('#editEventDirections').val();
+                json.ononon = $('#editEventOnOnOn').val();
+                json.trail_notes = $('#editEventNotes').val();
+                //add all of the hares
+                var hares = new Array();
+                $('#viewEventHares span:visible').each(function(){
+                    hares.push( $(this).attr('hasherid') );
+                });
+                json.hares = hares;
+            }
+            if( $('#viewEventHiddenType').val() == "e" ) {
+                postUrl = "update-event.php";
+                json.title = $('#editEventTitle').val();
+                json.date = $('#editEventDate').val();
+                json.time = $('#editEventTime').val();
+                json.location = $('#editEventLocation').val();
+                json.description = $('#editEventDescription').val();
+                json.directions = $('#editEventDirections').val();
+            }
+            $.ajax({
+                type: "POST",
+                url: "php/" + postUrl,
+                data: { origid: $('#viewEventHiddenID').val(),
+                        data: json
+                }
+            }).done(function(){
+                $('#event-calendar').fullCalendar( 'refetchEvents' );
+                $('#viewEventModal').modal('hide');                
+            });
+        },
+        cancel: function(button) {
+            // nothing to do
+        },
+        confirmButton: "Yes I am",
+        cancelButton: "No"
     });
     $('#viewAnnouncementEdit').click(function(){
         $(this).addClass('hidden');
