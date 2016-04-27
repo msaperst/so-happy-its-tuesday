@@ -2,7 +2,6 @@
 <html lang="en">
 
 <?php require "php/sql.php"; ?>
-<?php include "php/calendar.php"; ?>
 <?php require "header.php"; ?>
 
 <body id="page-top" class="index">
