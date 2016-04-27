@@ -14,6 +14,7 @@ div#login-container {
 div#login-holder {
 	background-color: white;
 	padding: 15px;
+	border: 2px black solid;
 }
 
 div#login-error {
