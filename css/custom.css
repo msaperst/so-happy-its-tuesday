@@ -67,7 +67,10 @@ input#map {
 	display: none;
 }
 
-//for our annoucements
 li.loadAnnouncement {
+	cursor: pointer;
+}
+
+.fc-content {
 	cursor: pointer;
 }

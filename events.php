@@ -133,9 +133,9 @@
 								<h4>Date: <?php echo $nextWeek['date']; ?></h4>
 							</div>
 							<div>
-								<div style='float: left; max-width: 300px;'>
+<!-- 							<div style='float: left; max-width: 300px;'>
 									<img src='img/<?php echo $nextWeek['image']; ?>' />
-								</div>
+								</div> -->
                         	<?php echo $nextWeek['description']; ?>
                         </div>
 					
@@ -195,7 +195,7 @@
 	</section>
 
 	<!-- Next week trail modal expansion -->
-	<div class="portfolio-modal modal fade" id="nextweektrailmodal" tabindex="-1" role="dialog" aria-hidden="true" style="background-image:url('img/<?php echo $nextWeek['image']; ?>');">
+	<div class="portfolio-modal modal fade" id="nextweektrailmodal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-content">
 			<div class="close-modal" data-dismiss="modal">
 				<div class="lr">
