@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row">
                     <div class="footer col-md-2">
-                        <div><a href="tel:202-PUD-JAM0">202-PUD-JAM0 #2</a></div>
+                        <div><a href="tel:202-783-5260">202-PUD-JAM0 #2</a></div>
                     </div>
                     <div class="footer col-md-2">
                         <div><a target="_blank" href="mailto:drcockulus@gmail.com">Sign Up to Hare</a></div>
