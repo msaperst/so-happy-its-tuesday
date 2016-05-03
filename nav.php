@@ -23,6 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+<!--                 <a class="navbar-brand" href="index.php"><img src='img/sohappytitlewlogo.jpg' height='50px;' /></a> -->
                 <a class="navbar-brand" href="index.php">Welcome</a>
             </div>
 
@@ -92,6 +93,7 @@
     <div class="container" id="login-container">
         <div class="row">
             <div id='login-holder' class="col-md-offset-5 col-md-3">
+            	<div id="login-div-close-div"><a href="javascript:void(0);"><i class="fa fa-remove" style="padding:2px;"></i></a></div>
                 <div class="form-login">
                 <div id='login-error'></div>
                 <div id='login-message'></div>

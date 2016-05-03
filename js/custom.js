@@ -3,6 +3,9 @@ $(document).ready(function() {
     $('#login-button').click(function() {
         $('#login-container').show();
     });
+    $('#login-div-close-div').click(function() {
+        $('#login-container').hide();
+    });
 
     $('#login-submit').click(function() {
         $.post("php/login.php", {
@@ -26,5 +29,4 @@ $(document).ready(function() {
             location.reload();
         });
     });
-
 });

@@ -3,6 +3,7 @@
 	color: black !important;
 }
 
+/* for the login */
 div#login-container {
 	position: fixed;
 	z-index: 99999;
@@ -25,6 +26,10 @@ div#login-error {
 div#login-message {
 	color: green;
 	font-weight: bold;
+}
+
+div#login-div-close-div {
+	float: right;
 }
 
 /* for search results */
