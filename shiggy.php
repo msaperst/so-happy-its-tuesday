@@ -8,21 +8,6 @@
 	
 	<?php require "nav.php"; ?>
     
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-<!--     <header class="intro-header" style="background-image:url('img/group.jpg'); background-position-x:50%; background-position-y:30%; min-height:550px;"> -->
-<!--         <div class="container"> -->
-<!--             <div class="row"> -->
-<!--                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"> -->
-<!--                     <div class="site-heading"> -->
-<!--                         <h1>So Happy It's Tuesday</h1> -->
-<!--                         <h3>Hash House Harriers</h3> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--     </header> -->
-    
     <!-- Hash Trash Section -->
     <section id="trash">
         <div class="container">
@@ -93,7 +78,30 @@
                 </div>
             </div>
             <div class="row">
-               	Coming Soon
+            	<table class="table table-hover table-responsive">
+                	<?php
+                	$sql = "select distinct(position) from shit_mismanagement";
+                    $result = mysqli_query ( $db, $sql );
+                    while ( $row = mysqli_fetch_array ( $result ) ) {
+                        $pos = $row['position'];
+                        echo "<tr><td>";
+                        echo $pos;
+                        echo "</td><td>";
+                        $sql = "select c.hashname, c.email from shit_mismanagement b, shit_hashers c where b.position = '$pos' and b.hshr_id = c.id;";
+                        $result1 = mysqli_query ( $db, $sql );
+                        while ( $row1 = mysqli_fetch_array ( $result1 ) ) {
+                            $email = $row1['email'];
+                            $name = $row1['hashname'];
+                            if( $email != "" ) {
+                                echo "<a href='mailto:$email' target='_blank'>$name</a><br/>";
+                            } else {
+                                echo "$name<br/>";
+                            }
+                        }
+                        echo "</td></tr>";
+                    }
+                    ?>
+            	</table>
             </div>
         </div>
     </section>
