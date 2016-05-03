@@ -513,7 +513,7 @@
 	<link
 		href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.0/fullcalendar.min.css"
 		rel="stylesheet" type="text/css">
-	<script src="js/events.js"></script>
+	<script src="js/events.min.js"></script>
 	<script src="js/jquery.confirm.min.js"></script>
 
 </body>
