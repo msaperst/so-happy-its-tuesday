@@ -126,4 +126,15 @@ $(document).ready(function() {
             });
         });
     });
+    
+    $('#hareLogLookup').keyup(function(){
+        var lookup = $(this).val();
+        $('#harelog tbody tr').each(function(){
+            if( $(".hashname", this).html().toLowerCase().indexOf(lookup.toLowerCase()) >= 0 ) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
 });

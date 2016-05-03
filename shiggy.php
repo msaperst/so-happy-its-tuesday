@@ -43,7 +43,56 @@
 					<hr class="star-primary">
 				</div>
 			</div>
-			<div class="row">Coming Soon</div>
+			<div class="row">
+				<div class="col-lg-12 text-left">
+					<input id='hareLogLookup' class='form-control'
+						placeholder='Find A Wanker' />
+					<table id='harelog' class="table table-striped table-hover table-responsive">
+						<thead style='background-color: green;'>
+							<tr>
+								<td>Hasher</td>
+								<td>Count</td>
+							</tr>
+						</thead>
+						<tbody>
+                    	<?php
+                    $sql = 'SELECT b.id, b.hashname, count(*) as count FROM shit_hares a, shit_hashers b, shit_trails c WHERE a.hshr_id = b.id AND a.trl_id = c.id AND c.hashdate < current_date() GROUP BY b.hashname ORDER BY `count` DESC , b.hashname ASC';
+                    $result = mysqli_query ( $db, $sql );
+                    while ( $row = mysqli_fetch_array ( $result ) ) {
+                        $id = $row ['id'];
+                        $hasher = $row ['hashname'];
+                        $count = $row ['count'];
+                        echo "<tr id='" . $id . "_row'><td class='hashname'>";
+                        echo $hasher;
+                        echo "</td><td class='count'>";
+                        echo $count;
+                        echo "</td></tr>";
+                    }
+                    ?>
+                    	</tbody>
+					</table>
+				</div>
+				<div class="col-lg-12 text-center">
+                	<?php
+                if (isset ( $_SESSION ['id'] )) {
+                    ?>
+                    <button id="addPosition" type="button"
+						class="btn btn-default hidden">
+						<i class="fa fa-add"></i> Add Position
+					</button>
+					<button id="saveMismanagement" type="button"
+						class="btn btn-default hidden">
+						<i class="fa fa-save"></i> Save Mismanagement
+					</button>
+					<button id="editMismanagement" type="button"
+						class="btn btn-default">
+						<i class="fa fa-edit"></i> Edit Mismanagement
+					</button>
+                    <?php
+                }
+                ?>
+                </div>
+			</div>
 		</div>
 	</section>
 
@@ -71,19 +120,20 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 text-left">
-					<table id='mismanagement' class="table table-hover table-responsive">
+					<table id='mismanagement'
+						class="table table-hover table-responsive">
                     	<?php
                     $sql = "select distinct(position) from shit_mismanagement";
                     $result = mysqli_query ( $db, $sql );
                     while ( $row = mysqli_fetch_array ( $result ) ) {
                         $pos = $row ['position'];
-                        echo "<tr class='mismanagement' id='".$pos."_row'><td class='position'>";
+                        echo "<tr class='mismanagement' id='" . $pos . "_row'><td class='position'>";
                         echo $pos;
                         echo "</td><td class='whois'>";
                         
                         echo "<span class='hidden'><input type='text' value='' placeholder='Find a wanker'
                                 class='searcher form-control' /></span>";
-                        echo "<span id='".$pos."_hares' class='holder'></span>";
+                        echo "<span id='" . $pos . "_hares' class='holder'></span>";
                         
                         $sql = "select c.id, c.hashname, c.email from shit_mismanagement b, shit_hashers c where b.position = '$pos' and b.hshr_id = c.id;";
                         $result1 = mysqli_query ( $db, $sql );
@@ -114,17 +164,17 @@
 						class="btn btn-default hidden">
 						<i class="fa fa-add"></i> Add Position
 					</button>
-                    <button id="saveMismanagement" type="button"
+					<button id="saveMismanagement" type="button"
 						class="btn btn-default hidden">
 						<i class="fa fa-save"></i> Save Mismanagement
 					</button>
-                    <button id="editMismanagement" type="button"
+					<button id="editMismanagement" type="button"
 						class="btn btn-default">
 						<i class="fa fa-edit"></i> Edit Mismanagement
 					</button>
                     <?php
                 }
-                    ?>
+                ?>
                 </div>
 			</div>
 		</div>
@@ -176,8 +226,8 @@
 
 	<script src="js/hashers.min.js"></script>
 	<link href="css/hashers.min.css" rel="stylesheet" type="text/css">
-    <script src="js/shiggy.min.js"></script>
-        
+	<script src="js/shiggy.min.js"></script>
+
 </body>
 
 <?php mysqli_close($db); ?>
