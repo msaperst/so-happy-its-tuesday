@@ -326,7 +326,7 @@
 							<hr class="star-primary">
 							<h4 id='trail-hares'>
 								Hares:
-								<span name='hares' id='hares'></span>
+								<span name='hares' id='hares' class='holder'></span>
 								<div><input type='text' value='' placeholder='Find a hare'
 									class='searcher' /></div>
 							</h4>
@@ -434,7 +434,7 @@
 							<h2 id='viewEventTitle'></h2>
 							<hr class="star-primary">
 							<h4>Hares: 
-								<span name='viewEventHares' id='viewEventHares'></span>
+								<span name='viewEventHares' id='viewEventHares' class='holder'></span>
 								<div class='hidden'><input type='text' value='' placeholder='Find a hare'
 										class='searcher' /></div>
 							</h4>
@@ -513,6 +513,8 @@
 	<link
 		href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.0/fullcalendar.min.css"
 		rel="stylesheet" type="text/css">
+	<script src="js/hashers.min.js"></script>
+	<link href="css/hashers.min.css" rel="stylesheet" type="text/css">
 	<script src="js/events.min.js"></script>
 	<script src="js/jquery.confirm.min.js"></script>
 

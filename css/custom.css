@@ -1,84 +1,98 @@
 .fc-view>table {
-	background-color: white !important;
-	color: black !important;
+    background-color: white !important;
+    color: black !important;
+}
+.fc-content {
+    cursor: pointer;
+}
+.btn-xsm {
+    padding: 2px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
 }
 
 /* for the login */
 div#login-container {
-	position: fixed;
-	z-index: 99999;
-	width: 100%;
-	top: 100px;
-	display: none;
+    position: fixed;
+    z-index: 99999;
+    width: 100%;
+    top: 100px;
+    display: none;
 }
 
 div#login-holder {
-	background-color: white;
-	padding: 15px;
-	border: 2px black solid;
+    background-color: white;
+    padding: 15px;
+    border: 2px black solid;
 }
 
 div#login-error {
-	color: red;
-	font-weight: bold;
+    color: red;
+    font-weight: bold;
 }
 
 div#login-message {
-	color: green;
-	font-weight: bold;
+    color: green;
+    font-weight: bold;
 }
 
 div#login-div-close-div {
-	float: right;
+    float: right;
 }
 
 /* for search results */
 .results {
-	width: 204px;
-	position: absolute;
-	border: 1px solid #c0c0c0;
-	z-index: 100
+    width: 204px;
+    position: absolute;
+    border: 1px solid #c0c0c0;
+    z-index: 100
 }
 .results .item {
-	background-color: white;
-	padding: 3px;
-	font-family: Helvetica;
-	border-bottom: 1px solid #c0c0c0;
+    background-color: white;
+    padding: 3px;
+    font-family: Helvetica;
+    border-bottom: 1px solid #c0c0c0;
 }
 .results .item:last-child {
-	border-bottom: 0px;
+    border-bottom: 0px;
 }
 .results .item:hover {
-	background-color: #f2f2f2;
-	cursor: pointer;
+    background-color: #f2f2f2;
+    cursor: pointer;
 }
 .hasher {
-	background-color: #f2f2f2;
-	padding: 2px;
-	margin: 5px;
-	border: 1px solid #c0c0c0;
+    background-color: #f2f2f2;
+    padding: 7px 7px 10px 7px;
+    margin: 5px;
+    border: 1px solid #c0c0c0;
+    display: inline-block;
 }
+
+/* for our inputs */
 textarea {
-	width: 100%;
+    width: 100%;
 }
 input#number {
-	width: 100px;
+    width: 100px;
 }
 input#map {
-	width: 560px;
+    width: 560px;
 }
 
 .hidden {
-	display: none;
+    display: none;
 }
 
 li.loadAnnouncement {
-	cursor: pointer;
+    cursor: pointer;
 }
 
-.fc-content {
-	cursor: pointer;
-}
 .footer div a {
-	font-weight: bold;
+    font-weight: bold;
+}
+
+/* for editing our mm users */
+td.delete {
+    width: 50px;
 }

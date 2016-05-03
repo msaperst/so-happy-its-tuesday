@@ -1,0 +1,31 @@
+/* for search results */
+.results {
+	width: 204px;
+	position: absolute;
+	border: 1px solid #c0c0c0;
+	z-index: 100
+}
+.results .item {
+	background-color: white;
+	padding: 3px;
+	font-family: Helvetica;
+	border-bottom: 1px solid #c0c0c0;
+}
+.results .item:last-child {
+	border-bottom: 0px;
+}
+.results .item:hover {
+	background-color: #f2f2f2;
+	cursor: pointer;
+}
+.hasher {
+	background-color: #f2f2f2;
+	padding: 7px 7px 10px 7px;
+	margin: 5px;
+	border: 1px solid #c0c0c0;
+	display: inline-block;
+}
+.searcher {
+	width: 200px;
+	display: inline-block;
+}

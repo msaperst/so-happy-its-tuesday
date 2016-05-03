@@ -71,25 +71,35 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 text-left">
-					<table class="table table-hover table-responsive">
+					<table id='mismanagement' class="table table-hover table-responsive">
                     	<?php
                     $sql = "select distinct(position) from shit_mismanagement";
                     $result = mysqli_query ( $db, $sql );
                     while ( $row = mysqli_fetch_array ( $result ) ) {
                         $pos = $row ['position'];
-                        echo "<tr><td>";
+                        echo "<tr class='mismanagement' id='".$pos."_row'><td class='position'>";
                         echo $pos;
-                        echo "</td><td>";
-                        $sql = "select c.hashname, c.email from shit_mismanagement b, shit_hashers c where b.position = '$pos' and b.hshr_id = c.id;";
+                        echo "</td><td class='whois'>";
+                        
+                        echo "<span class='hidden'><input type='text' value='' placeholder='Find a wanker'
+                                class='searcher form-control' /></span>";
+                        echo "<span id='".$pos."_hares' class='holder'></span>";
+                        
+                        $sql = "select c.id, c.hashname, c.email from shit_mismanagement b, shit_hashers c where b.position = '$pos' and b.hshr_id = c.id;";
                         $result1 = mysqli_query ( $db, $sql );
                         while ( $row1 = mysqli_fetch_array ( $result1 ) ) {
-                            $email = $row1 ['email'];
+                            $id = $row1 ['id'];
                             $name = $row1 ['hashname'];
+                            $email = $row1 ['email'];
+                            echo "<div class='hasherholder'>";
                             if ($email != "") {
-                                echo "<a href='mailto:$email' target='_blank'>$name</a><br/>";
-                            } else {
-                                echo "$name<br/>";
+                                echo "<a href='mailto:$email' target='_blank'>";
                             }
+                            echo "<span class='viewHasher' hasherid='$id'>$name </span>";
+                            if ($email != "") {
+                                echo "</a>";
+                            }
+                            echo "</div>";
                         }
                         echo "</td></tr>";
                     }
@@ -100,7 +110,15 @@
                 	<?php
                 if (isset ( $_SESSION ['id'] )) {
                     ?>
-                        <button href="#editMismanagement" type="button"
+                    <button id="addPosition" type="button"
+						class="btn btn-default hidden">
+						<i class="fa fa-add"></i> Add Position
+					</button>
+                    <button id="saveMismanagement" type="button"
+						class="btn btn-default hidden">
+						<i class="fa fa-save"></i> Save Mismanagement
+					</button>
+                    <button id="editMismanagement" type="button"
 						class="btn btn-default">
 						<i class="fa fa-edit"></i> Edit Mismanagement
 					</button>
@@ -156,7 +174,9 @@
     
     <?php require "footer.php"; ?>
 
-    <script src="js/events.min.js"></script>
+	<script src="js/hashers.min.js"></script>
+	<link href="css/hashers.min.css" rel="stylesheet" type="text/css">
+    <script src="js/shiggy.min.js"></script>
         
 </body>
 
