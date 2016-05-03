@@ -4,11 +4,11 @@ $(document).ready(function() {
     var deleteIcon = $("<i>");
     deleteIcon.addClass("fa fa-trash-o");
     var deletePositionButton = $("<button>");
-    deletePositionButton.addClass("split-transaction-delete-btn btn btn-sm btn-danger");
+    deletePositionButton.addClass("btn btn-sm btn-danger");
     deletePositionButton.attr("title", "Delete Position");
     deletePositionButton.append(deleteIcon.clone());
     var removeHasherButton = $("<button>");
-    removeHasherButton.addClass("split-transaction-delete-btn btn btn-xsm btn-danger");
+    removeHasherButton.addClass("btn btn-xsm btn-danger");
     removeHasherButton.attr("title", "Remove Hasher");
     removeHasherButton.append(deleteIcon.clone());
 

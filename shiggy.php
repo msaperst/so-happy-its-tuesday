@@ -50,8 +50,15 @@
 					<table id='harelog' class="table table-striped table-hover table-responsive">
 						<thead style='background-color: green;'>
 							<tr>
-								<td>Hasher</td>
-								<td>Count</td>
+								<th>Hasher</th>
+								<th>Count</th>
+                	<?php
+                if (isset ( $_SESSION ['id'] )) {
+                    ?>
+                    			<th></th>
+                	<?php
+                }
+                    ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -66,6 +73,10 @@
                         echo $hasher;
                         echo "</td><td class='count'>";
                         echo $count;
+                        if (isset ( $_SESSION ['id'] )) {
+                            echo "</td><td class='buttons'>";
+                            echo "<button class='btn btn-xsm btn-warning' title='Edit Hasher'><i class='fa fa-edit'></i></button>";
+                        }
                         echo "</td></tr>";
                     }
                     ?>
@@ -76,17 +87,9 @@
                 	<?php
                 if (isset ( $_SESSION ['id'] )) {
                     ?>
-                    <button id="addPosition" type="button"
-						class="btn btn-default hidden">
-						<i class="fa fa-add"></i> Add Position
-					</button>
-					<button id="saveMismanagement" type="button"
-						class="btn btn-default hidden">
-						<i class="fa fa-save"></i> Save Mismanagement
-					</button>
-					<button id="editMismanagement" type="button"
+                    <button id="addHasher" type="button"
 						class="btn btn-default">
-						<i class="fa fa-edit"></i> Edit Mismanagement
+						<i class="fa fa-add"></i> Add Hasher
 					</button>
                     <?php
                 }
