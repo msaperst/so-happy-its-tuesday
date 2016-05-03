@@ -47,7 +47,8 @@
 				<div class="col-lg-12 text-left">
 					<input id='hareLogLookup' class='form-control'
 						placeholder='Find A Wanker' />
-					<table id='harelog' class="table table-striped table-hover table-responsive">
+					<table id='harelog'
+						class="table table-striped table-hover table-responsive">
 						<thead style='background-color: green;'>
 							<tr>
 								<th>Hasher</th>
@@ -58,7 +59,7 @@
                     			<th></th>
                 	<?php
                 }
-                    ?>
+                ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -69,13 +70,13 @@
                         $id = $row ['id'];
                         $hasher = $row ['hashname'];
                         $count = $row ['count'];
-                        echo "<tr id='" . $id . "_row'><td class='hashname'>";
+                        echo "<tr hasher-id='$id'><td class='hashname'>";
                         echo $hasher;
                         echo "</td><td class='count'>";
                         echo $count;
                         if (isset ( $_SESSION ['id'] )) {
                             echo "</td><td class='buttons'>";
-                            echo "<button class='btn btn-xsm btn-warning' title='Edit Hasher'><i class='fa fa-edit'></i></button>";
+                            echo "<button class='btn btn-xsm btn-warning editHasher' title='Edit Hasher'><i class='fa fa-edit'></i></button>";
                         }
                         echo "</td></tr>";
                     }
@@ -87,7 +88,7 @@
                 	<?php
                 if (isset ( $_SESSION ['id'] )) {
                     ?>
-                    <button id="addHasher" type="button"
+                    <button href="#hasherModal" data-toggle="modal" id="addHasher" type="button"
 						class="btn btn-default">
 						<i class="fa fa-add"></i> Add Hasher
 					</button>
@@ -217,6 +218,72 @@
 			</div>
 		</div>
 	</section>
+
+	<!-- Add Hasher modal -->
+    <?php
+    if (isset ( $_SESSION ['id'] )) {
+        ?>
+	<div class="portfolio-modal modal fade" id="hasherModal"
+		tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-content">
+			<div class="close-modal" data-dismiss="modal">
+				<div class="lr">
+					<div class="rl"></div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="modal-body">
+							<h2 class="col-md-12">
+								<input id='hashName' class='form-control' placeholder='Hash Name' type='text' />
+							</h2>
+							<h4 class="col-md-12">
+								<input id='nerdName' class='form-control' placeholder='Nerd Name' type='text' />
+							</h4>
+							<div class='class-left'>
+    							<div class="col-md-6">
+    				                <input id="email" class='form-control' placeholder='Email Address' type="email" />
+    				            </div>
+    							<div class="col-md-6">
+    				                <input id="phone" class='form-control' placeholder='Phone Number' type="tel" />
+    				            </div>
+    							<div class="col-md-12">
+    				                <input id="address" class='form-control' placeholder='Street Address' type="text" />
+    				            </div>
+    							<div class="col-md-4">
+    				                <input id="city" class='form-control' placeholder='City' type="text" />
+    				            </div>
+    							<div class="col-md-4">
+    				                <input id="state" class='form-control' placeholder='State' type="text" />
+    				            </div>
+    							<div class="col-md-4">
+    				                <input id="zip" class='form-control' placeholder='Zip Code' type="text" />
+    				            </div>
+    							<p>
+    								<input id='hasher-id' type='hidden' />
+    							</p>
+							</div>
+							<p><hr></p>
+							<p>
+    							<button type="button" class="btn btn-default"
+    								data-dismiss="modal">
+    								<i class="fa fa-times"></i> Close
+    							</button>
+    							<button id='hasherSave' type="button"
+    								class="btn btn-default">
+    								<i class="fa fa-save"></i> Save
+    							</button>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <?php
+    }
+    ?>
 
 	<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
 	<div class="scroll-top page-scroll visible-xs visible-sm">

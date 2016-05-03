@@ -137,4 +137,53 @@ $(document).ready(function() {
             }
         });
     });
+    
+    $('.editHasher').click(function(){
+        $('#hasherModal').modal();
+        $.get( "php/get-hasher.php", { id: $(this).closest('tr').attr('hasher-id') } ).done(function( data ) {
+            data = $.parseJSON( data );
+            $('#hashName').val( data.hashname );
+            $('#nerdName').val( data.nerdname );
+            $('#email').val( data.email );
+            $('#phone').val( data.phone );
+            $('#address').val( data.address );
+            $('#city').val( data.city );
+            $('#state').val( data.state );
+            $('#zip').val( data.zip );
+            $('#hasher-id').val( data.ID );
+        });
+    });
+    $('#addHasher').click(function(){
+        $('#hashName').val("");
+        $('#nerdName').val("");
+        $('#email').val("");
+        $('#phone').val("");
+        $('#address').val("");
+        $('#city').val("");
+        $('#state').val("");
+        $('#zip').val("");
+        $('#hasher-id').val("");
+    });
+    $('#hasherSave').click(function(){
+        var hasher = {};
+        hasher.hashname = $('#hashName').val();
+        hasher.nerdname = $('#nerdName').val();
+        hasher.email = $('#email').val();
+        hasher.phone = $('#phone').val();
+        hasher.address = $('#address').val();
+        hasher.city = $('#city').val();
+        hasher.state = $('#state').val();
+        hasher.zip = $('#zip').val();
+        if ( $('#hasher-id').val() != "" ) {
+            hasher.id = $('#hasher-id').val();
+        }
+        $.ajax({
+            type: "POST",
+            url: "php/update-hasher.php",
+            data: { data: hasher }
+        }).done(function(){
+            //TODO - need to update the table
+        });
+        $('#hasherModal').modal('hide');
+    });
 });

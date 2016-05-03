@@ -9,8 +9,6 @@
     // Making the cookie live for 2 weeks
     
     session_start();
-    
-    print_r( $_SESSION );
 ?>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
