@@ -30,7 +30,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/freelancer.css" rel="stylesheet">
+    <link href="css/freelancer.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -66,7 +66,7 @@
     <script src="js/moment.min.js"></script>
     
     <!-- Custom -->
-    <link href="css/custom.css" rel="stylesheet" type="text/css">
+    <link href="css/custom.min.css" rel="stylesheet" type="text/css">
     <script src="js/custom.js"></script>
 
 </head>

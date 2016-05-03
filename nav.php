@@ -96,9 +96,9 @@
                 <div id='login-error'></div>
                 <div id='login-message'></div>
                 <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />
-                </br>
+                <br/>
                 <input type="password" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
-                </br>
+                <br/>
                 <div class="wrapper">
                 <span class="group-btn">     
                     <a id='login-submit' href="#" class="btn btn-primary btn-md">Login <i class="fa fa-sign-in"></i></a>

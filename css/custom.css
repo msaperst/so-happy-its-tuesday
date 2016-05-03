@@ -27,7 +27,7 @@ div#login-message {
 	font-weight: bold;
 }
 
-//for search results
+/* for search results */
 .results {
 	width: 204px;
 	position: absolute;
@@ -73,4 +73,7 @@ li.loadAnnouncement {
 
 .fc-content {
 	cursor: pointer;
+}
+.footer div a {
+	font-weight: bold;
 }
