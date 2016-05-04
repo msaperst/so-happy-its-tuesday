@@ -80,6 +80,7 @@ $(document).ready(function() {
         whoisCell.addClass("whois");
         whoisSearch = $("<input>");
         whoisSearch.attr("placeholder", "Find a wanker");
+        whoisSearch.attr("style","position:relative;top:2px;");
         whoisSearch.addClass("searcher form-control");
         var whoisSearchSpan = $("<span>");
         whoisSearchSpan.append(whoisSearch);

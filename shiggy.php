@@ -136,7 +136,7 @@
                         echo "</td><td class='whois'>";
                         
                         echo "<span class='hidden'><input type='text' value='' placeholder='Find a wanker'
-                                class='searcher form-control' /></span>";
+                                class='searcher form-control' style='position:relative;top:2px;'/></span>";
                         echo "<span id='" . $pos . "_hares' class='holder'></span>";
                         
                         $sql = "select c.id, c.hashname, c.email from shit_mismanagement b, shit_hashers c where b.position = '$pos' and b.hshr_id = c.id;";
