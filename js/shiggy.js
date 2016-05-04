@@ -187,4 +187,10 @@ $(document).ready(function() {
         });
         $('#hasherModal').modal('hide');
     });
+    
+    $('.hashname').click(function(){
+        $.get( "php/get-hare-count.php", { id: $(this).closest('tr').attr('hasher-id') } ).done(function( data ) {
+            console.log( data );
+        });
+    });
 });
