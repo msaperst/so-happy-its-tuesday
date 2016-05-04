@@ -76,3 +76,8 @@ td.delete {
 .hashname {
 	cursor: pointer;
 }
+
+.close-hare-count {
+	position: absolute;
+	right: 20px;
+}

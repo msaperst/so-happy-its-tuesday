@@ -189,8 +189,41 @@ $(document).ready(function() {
     });
     
     $('.hashname').click(function(){
-        $.get( "php/get-hare-count.php", { id: $(this).closest('tr').attr('hasher-id') } ).done(function( data ) {
-            console.log( data );
-        });
+        var hasher_row = $(this).closest('tr');
+        if( hasher_row.next().hasClass('display-count') ) {
+            hasher_row.next().remove();
+        } else {
+            $.get( "php/get-hare-count.php", { id: hasher_row.attr('hasher-id') } ).done(function( data ) {
+                data = $.parseJSON(data);
+                var row = $("<tr class='display-count'>");
+                var cell = $("<td colspan=3>");
+                var close = $("<div class='close-hare-count'><a href='javascript:void(0);'><i class='fa fa-remove' style='padding:2px;'></i></a></div>");
+                close.click(function(){
+                    $(this).closest('tr').remove();
+                });
+                cell.append(close);
+                var table = $("<table style='width:100%'>");
+                var thead = $("<thead><tr><th>Trail #</th><th>Trail Date</th><th>Title</th></tr></thead>");
+                table.append(thead);
+                var tbody = $("<tbody>");
+                $.each(data, function(i, item) {
+                    var row = $("<tr>");
+                    var cell = $("<td>");
+                    cell.html(item.TRL_ID);
+                    row.append(cell);
+                    var cell = $("<td>");
+                    cell.html(item.HASHDATE);
+                    row.append(cell);
+                    var cell = $("<td>");
+                    cell.html(item.TITLE);
+                    row.append(cell);
+                    tbody.append(row);
+                });
+                table.append(tbody);
+                cell.append(table);
+                row.append(cell);
+                hasher_row.after(row);
+            });
+        }
     });
 });
