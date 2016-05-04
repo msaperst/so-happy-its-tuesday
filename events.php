@@ -112,12 +112,12 @@
     
 
     <!-- Next Trail Section -->
-	<section id="next-trail">
+	<section class="success" id="next-trail">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2>Next Weeks Trail</h2>
-					<hr class="star-primary">
+					<hr class="star-light">
 				</div>
 			</div>
 			<div class="row">
@@ -146,12 +146,12 @@
 	</section>
 
 	<!-- Announcements Section -->
-	<section class="success" id="announcements">
+	<section id="announcements">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2>News</h2>
-					<hr class="star-light">
+					<hr class="star-primary">
 					<div class='text-left'>
 						<ul id='allAnnouncements'>
                             <?php
@@ -180,16 +180,82 @@
 	</section>
 
 	<!-- Events Section -->
-	<section id="events">
+	<section class="success" id="events">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2>Events</h2>
-					<hr class="star-primary">
+					<hr class="star-light">
 					<div class='text-left'>
 						<div id='event-calendar' style='color: black'></div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</section>
+	
+    <!-- Hare Log Section -->
+	<section id="harelog">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2>Hare Log</h2>
+					<hr class="star-primary">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-left">
+					<input id='hareLogLookup' class='form-control'
+						placeholder='Find A Wanker' />
+					<table id='harelog'
+						class="table table-striped table-hover table-responsive">
+						<thead style='background-color: green;'>
+							<tr>
+								<th>Hasher</th>
+								<th>Count</th>
+                	<?php
+                if (isset ( $_SESSION ['id'] )) {
+                    ?>
+                    			<th></th>
+                	<?php
+                }
+                ?>
+							</tr>
+						</thead>
+						<tbody>
+                    	<?php
+                    $sql = 'SELECT b.id, b.hashname, count(*) as count FROM shit_hares a, shit_hashers b, shit_trails c WHERE a.hshr_id = b.id AND a.trl_id = c.id AND c.hashdate < current_date() GROUP BY b.hashname ORDER BY `count` DESC , b.hashname ASC';
+                    $result = mysqli_query ( $db, $sql );
+                    while ( $row = mysqli_fetch_array ( $result ) ) {
+                        $id = $row ['id'];
+                        $hasher = $row ['hashname'];
+                        $count = $row ['count'];
+                        echo "<tr hasher-id='$id'><td class='hashname'>";
+                        echo $hasher;
+                        echo "</td><td class='count'>";
+                        echo $count;
+                        if (isset ( $_SESSION ['id'] )) {
+                            echo "</td><td class='buttons'>";
+                            echo "<button class='btn btn-xsm btn-warning editHasher' title='Edit Hasher'><i class='fa fa-edit'></i></button>";
+                        }
+                        echo "</td></tr>";
+                    }
+                    ?>
+                    	</tbody>
+					</table>
+				</div>
+				<div class="col-lg-12 text-center">
+                	<?php
+                if (isset ( $_SESSION ['id'] )) {
+                    ?>
+                    <button href="#hasherModal" data-toggle="modal" id="addHasher" type="button"
+						class="btn btn-default">
+						<i class="fa fa-add"></i> Add Hasher
+					</button>
+                    <?php
+                }
+                ?>
+                </div>
 			</div>
 		</div>
 	</section>
@@ -498,7 +564,73 @@
 			</div>
 		</div>
 	</div>
-
+	
+	<!-- Add Hasher modal -->
+    <?php
+    if (isset ( $_SESSION ['id'] )) {
+        ?>
+	<div class="portfolio-modal modal fade" id="hasherModal"
+		tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-content">
+			<div class="close-modal" data-dismiss="modal">
+				<div class="lr">
+					<div class="rl"></div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="modal-body">
+							<h2 class="col-md-12">
+								<input id='hashName' class='form-control' placeholder='Hash Name' type='text' />
+							</h2>
+							<h4 class="col-md-12">
+								<input id='nerdName' class='form-control' placeholder='Nerd Name' type='text' />
+							</h4>
+							<div class='class-left'>
+    							<div class="col-md-6">
+    				                <input id="email" class='form-control' placeholder='Email Address' type="email" />
+    				            </div>
+    							<div class="col-md-6">
+    				                <input id="phone" class='form-control' placeholder='Phone Number' type="tel" />
+    				            </div>
+    							<div class="col-md-12">
+    				                <input id="address" class='form-control' placeholder='Street Address' type="text" />
+    				            </div>
+    							<div class="col-md-4">
+    				                <input id="city" class='form-control' placeholder='City' type="text" />
+    				            </div>
+    							<div class="col-md-4">
+    				                <input id="state" class='form-control' placeholder='State' type="text" />
+    				            </div>
+    							<div class="col-md-4">
+    				                <input id="zip" class='form-control' placeholder='Zip Code' type="text" />
+    				            </div>
+    							<p>
+    								<input id='hasher-id' type='hidden' />
+    							</p>
+							</div>
+							<p><hr></p>
+							<p>
+    							<button type="button" class="btn btn-default"
+    								data-dismiss="modal">
+    								<i class="fa fa-times"></i> Close
+    							</button>
+    							<button id='hasherSave' type="button"
+    								class="btn btn-default">
+    								<i class="fa fa-save"></i> Save
+    							</button>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <?php
+    }
+    ?>
+	
 	<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
 	<div class="scroll-top page-scroll visible-xs visible-sm">
 		<a class="btn btn-primary" href="#page-top"> <i

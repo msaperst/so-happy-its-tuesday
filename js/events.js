@@ -123,6 +123,7 @@ $(document).ready(function() {
             $('#add-what').val('e');
         }
     });
+    
     $('#new-event-save').click(function(){
         var json = new Object();
         if( $("#add-what").val() == "t" ) {
@@ -167,6 +168,7 @@ $(document).ready(function() {
         }
         $('#newEvent').modal('hide');
     });
+    
     $('#newAnnouncementSave').click(function(){
         $.ajax({
             type: "POST",
@@ -187,6 +189,7 @@ $(document).ready(function() {
             loadAnnouncement();
         });
     });
+
     $('#viewEventDelete').confirm({
         text: "Are you sure you want to delete this event?",
         title: "Confirmation required",
@@ -205,26 +208,6 @@ $(document).ready(function() {
             }).done(function(){
                 $('#event-calendar').fullCalendar( 'refetchEvents' );
                 $('#viewEventModal').modal('hide');                
-            });
-        },
-        cancel: function(button) {
-            // nothing to do
-        },
-        confirmButton: "Yes I am",
-        cancelButton: "No"
-    });
-    $('#viewAnnouncementDelete').confirm({
-        text: "Are you sure you want to delete this announcement?",
-        title: "Confirmation required",
-        confirm: function(button) {
-            postUrl = "";
-            $.ajax({
-                type: "POST",
-                url: "php/delete-announcement.php",
-                data: { id: $('#viewAnnouncementHiddenID').val() }
-            }).done(function(){
-                $( "li[announcement='"+$('#viewAnnouncementHiddenID').val()+"']" ).remove();
-                $('#viewAnnouncementModal').modal('hide');                
             });
         },
         cancel: function(button) {
@@ -379,6 +362,7 @@ $(document).ready(function() {
         confirmButton: "Yes I am",
         cancelButton: "No"
     });
+    
     $('#viewAnnouncementEdit').click(function(){
         $(this).addClass('hidden');
         $('#viewAnnouncementSave').removeClass('hidden');
@@ -391,6 +375,26 @@ $(document).ready(function() {
         var descriptionInput = $("<textarea>");
         descriptionInput.val(oldDescription);
         $('#viewAnnouncementDescription').html(descriptionInput);
+    });
+    $('#viewAnnouncementDelete').confirm({
+        text: "Are you sure you want to delete this announcement?",
+        title: "Confirmation required",
+        confirm: function(button) {
+            postUrl = "";
+            $.ajax({
+                type: "POST",
+                url: "php/delete-announcement.php",
+                data: { id: $('#viewAnnouncementHiddenID').val() }
+            }).done(function(){
+                $( "li[announcement='"+$('#viewAnnouncementHiddenID').val()+"']" ).remove();
+                $('#viewAnnouncementModal').modal('hide');                
+            });
+        },
+        cancel: function(button) {
+            // nothing to do
+        },
+        confirmButton: "Yes I am",
+        cancelButton: "No"
     });
     $('#viewAnnouncementSave').confirm({
         text: "Are you sure you want to save your changes to this announcement?",
@@ -417,6 +421,145 @@ $(document).ready(function() {
         confirmButton: "Yes I am",
         cancelButton: "No"
     });
+    
+    $('#hareLogLookup').keyup(function(){
+        var lookup = $(this).val();
+        $('#harelog tbody tr').each(function(){
+            if( $(".hashname", this).html().toLowerCase().indexOf(lookup.toLowerCase()) >= 0 ) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+    $('.hashname').click(function(){
+        var hasher_row = $(this).closest('tr');
+        if( hasher_row.next().hasClass('display-count') ) {
+            hasher_row.next().remove();
+        } else {
+            $.get( "php/get-hare-count.php", { id: hasher_row.attr('hasher-id') } ).done(function( data ) {
+                data = $.parseJSON(data);
+                var row = $("<tr class='display-count'>");
+                var cell = $("<td colspan=3>");
+                var close = $("<div class='close-hare-count'><a href='javascript:void(0);'><i class='fa fa-remove' style='padding:2px;'></i></a></div>");
+                close.click(function(){
+                    $(this).closest('tr').remove();
+                });
+                cell.append(close);
+                var table = $("<table style='width:100%'>");
+                var thead = $("<thead><tr><th>Trail #</th><th>Trail Date</th><th>Trail Title</th></tr></thead>");
+                table.append(thead);
+                var tbody = $("<tbody>");
+                $.each(data, function(i, item) {
+                    var row = $("<tr>");
+                    var cell = $("<td>");
+                    var trail_number = item.TRL_ID;
+                    if( trail_number > 190 ) {
+                        trail_number--;
+                    }
+                    cell.html(trail_number);
+                    row.append(cell);
+                    var cell = $("<td>");
+                    cell.html(item.HASHDATE);
+                    row.append(cell);
+                    var cell = $("<td>");
+                    cell.html(item.TITLE);
+                    cell.attr('style','cursor:pointer;');
+                    cell.click(function(){
+                        $('#viewEventModal').modal();
+                        $('#viewEventEdit').removeClass('hidden');
+                        $('#viewEventSave').addClass('hidden');
+                        $('#viewEventHares').next().addClass('hidden');
+                        $('#viewEventDetailsList2').addClass('hidden');
+                        $.get( "php/get-event.php", { id: item.TRL_ID, type: 't' } ).done(function( data ) {
+                            data = $.parseJSON( data );
+                            $('#viewEventHiddenID').val(data.ID);
+                            $('#viewEventHiddenType').val('t');
+                            $('#viewEventLocation').html(data.LOCATION);
+                            $('#viewEventDate').html(data.date);
+                            $('#viewEventDirections').html(data.DIRECTIONS);
+                            if( data.ID > 190 ) {
+                                data.ID--;
+                            }
+                            $('#viewEventTitle').html("Trail <span id='viewEventTitleNumber'>" + data.ID + "</span>: <span id='viewEventTitleTitle'>" + data.TITLE + "</span>");
+                            var hares = "";
+                            $.each( data.HARE_ID, function( id, hasher ) {
+                                hares += "<span class='viewHasher' hasherid='" + id + "'>" + hasher + "</span><span class='spacer'>, </span>";
+                            });
+                            hares = hares.slice(0, -30);
+                            $('#viewEventHares').html(hares);
+                            $('#viewEventHares').show();
+                            $('#viewEventTime').html("19:00");
+                            $('#viewEventMap').html(data.MAPLINK);
+                            $('#viewEventDescription').html(data.TIDBIT);
+                            $('#viewEventStart').parent().show();
+                            $('#viewEventStart').html("<a href='" + data.MAPLINK + "' target='_blank'>" + data.ADDRESS + "</a>");
+                            $('#viewEventOnOnOn').parent().show();
+                            $('#viewEventOnOnOn').html("<a href='" + data.MAPLINK + "' target='_blank'>" + data.ONONON + "</a>");
+                            $('#viewEventNotes').parent().show()
+                            $('#viewEventNotes').html(data.NOTES);
+                        });
+                    });
+                    row.append(cell);
+                    tbody.append(row);
+                });
+                table.append(tbody);
+                cell.append(table);
+                row.append(cell);
+                hasher_row.after(row);
+            });
+        }
+    });
+    
+    $('.editHasher').click(function(){
+        $('#hasherModal').modal();
+        $.get( "php/get-hasher.php", { id: $(this).closest('tr').attr('hasher-id') } ).done(function( data ) {
+            data = $.parseJSON( data );
+            $('#hashName').val( data.hashname );
+            $('#nerdName').val( data.nerdname );
+            $('#email').val( data.email );
+            $('#phone').val( data.phone );
+            $('#address').val( data.address );
+            $('#city').val( data.city );
+            $('#state').val( data.state );
+            $('#zip').val( data.zip );
+            $('#hasher-id').val( data.ID );
+        });
+    });
+    $('#addHasher').click(function(){
+        $('#hashName').val("");
+        $('#nerdName').val("");
+        $('#email').val("");
+        $('#phone').val("");
+        $('#address').val("");
+        $('#city').val("");
+        $('#state').val("");
+        $('#zip').val("");
+        $('#hasher-id').val("");
+    });
+    $('#hasherSave').click(function(){
+        var hasher = {};
+        hasher.hashname = $('#hashName').val();
+        hasher.nerdname = $('#nerdName').val();
+        hasher.email = $('#email').val();
+        hasher.phone = $('#phone').val();
+        hasher.address = $('#address').val();
+        hasher.city = $('#city').val();
+        hasher.state = $('#state').val();
+        hasher.zip = $('#zip').val();
+        if ( $('#hasher-id').val() != "" ) {
+            hasher.id = $('#hasher-id').val();
+        }
+        $.ajax({
+            type: "POST",
+            url: "php/update-hasher.php",
+            data: { data: hasher }
+        }).done(function(){
+            //TODO - need to update the table
+        });
+        $('#hasherModal').modal('hide');
+    });
+
     loadAnnouncement();
 });
 function loadAnnouncement() {

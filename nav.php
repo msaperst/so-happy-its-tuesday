@@ -43,6 +43,9 @@
                             <li class="page-scroll">
                                 <a href="<?php echo str_replace($url, "", "events.php"); ?>#events">Calendar</a>
                             </li>
+                            <li class="page-scroll">
+                                <a href="<?php echo str_replace($url, "", "events.php"); ?>#harelog">Hare Log</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -53,9 +56,6 @@
                             </li>
                             <li class="page-scroll">
                                 <a href="<?php echo str_replace($url, "", "shiggy.php"); ?>#history">History</a>
-                            </li>
-                            <li class="page-scroll">
-                                <a href="<?php echo str_replace($url, "", "shiggy.php"); ?>#harelog">Hare Log</a>
                             </li>
                             <li class="page-scroll">
                                 <a href="<?php echo str_replace($url, "", "shiggy.php"); ?>#hareguide">Hare Guide</a>
