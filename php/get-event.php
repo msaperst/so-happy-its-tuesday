@@ -24,8 +24,9 @@ if ($type == "t") { // our trails
     
     $sql = "SELECT * FROM shit_directions WHERE TRL_ID = $id LIMIT 1;";
     $result = mysqli_query ( $db, $sql );
-    if( is_array( mysqli_fetch_assoc ( $result ) ) ) {
-        $event = array_merge ( $event, mysqli_fetch_assoc ( $result ) );
+    $next = mysqli_fetch_assoc ( $result );
+    if( is_array( $next ) ) {
+        $event = array_merge ( $event, $next );
     }
     
     // fix the date
