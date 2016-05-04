@@ -24,7 +24,9 @@ if ($type == "t") { // our trails
     
     $sql = "SELECT * FROM shit_directions WHERE TRL_ID = $id LIMIT 1;";
     $result = mysqli_query ( $db, $sql );
-    $event = array_merge ( $event, mysqli_fetch_assoc ( $result ) );
+    if( is_array( mysqli_fetch_assoc ( $result ) ) ) {
+        $event = array_merge ( $event, mysqli_fetch_assoc ( $result ) );
+    }
     
     // fix the date
     $date = $event ["HASHDATE"];
