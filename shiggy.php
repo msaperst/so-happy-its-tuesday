@@ -9,12 +9,12 @@
 	<?php require "nav.php"; ?>
     
     <!-- Hash Trash Section -->
-	<section id="trash">
+	<section class="success" id="trash">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2>Hash Trash</h2>
-					<hr class="star-primary">
+					<hr class="star-light">
 				</div>
 			</div>
 			<div class="row">Coming Soon</div>
@@ -22,12 +22,12 @@
 	</section>
 
 	<!-- History Section -->
-	<section class="success" id="history">
+	<section id="history">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2>History</h2>
-					<hr class="star-light">
+					<hr class="star-primary">
 				</div>
 			</div>
 			<div class="row">Coming Soon</div>
