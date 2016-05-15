@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2016 at 03:18 PM
+-- Generation Time: May 15, 2016 at 08:30 PM
 -- Server version: 5.6.29-percona-sure1-log
--- PHP Version: 5.6.19
+-- PHP Version: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -2265,20 +2265,18 @@ INSERT INTO `shit_hares` (`TRL_ID`, `HSHR_ID`, `lead`) VALUES
 (737, 388, 0),
 (735, 0, 0),
 (735, 425, 0),
-(738, 80, 1),
 (736, 16, 1),
-(738, 388, 0),
-(738, 16, 0),
-(738, 474, 0),
-(738, 480, 0),
-(738, 385, 0),
-(738, 375, 0),
+(738, 80, 1),
 (733, 16, 0),
 (733, 388, 0),
 (735, 388, 1),
 (736, 388, 0),
 (739, 480, 1),
-(740, 251, 1);
+(740, 251, 1),
+(741, 0, 1),
+(742, 80, 1),
+(743, 388, 1),
+(744, 0, 1);
 
 --
 -- Indexes for dumped tables

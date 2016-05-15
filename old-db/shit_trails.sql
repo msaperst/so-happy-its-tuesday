@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2016 at 03:20 PM
+-- Generation Time: May 15, 2016 at 08:31 PM
 -- Server version: 5.6.29-percona-sure1-log
--- PHP Version: 5.6.19
+-- PHP Version: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -791,10 +791,15 @@ INSERT INTO `shit_trails` (`ID`, `TITLE`, `LOCATION`, `HASHDATE`, `harestr`, `IM
 (734, 'The Caramel Day Trail', 'Back Parking Lot of: 21301 Beaumeade Cir, Ashburn, VA 20147', '2016-04-05', '<span style="color: rgb(20, 24, 35); font-family: helvetica, arial, sans-serif; line-height: 18.76px;">Like the Otther Pink Meat good Caramel is all-natural, creamy, Kosher caramel wrapped in quotes to inspire.&nbsp;</span><br style="color: rgb(20, 24, 35); font-family: helvetica, arial, sans-serif; line-height: 18.76px;"><span style="color: rgb(20, 24, 35); font-family: helvetica, arial, sans-serif; line-height: 18.76px;">Each melt-in-your-mouth bite is crafted by hand with only the finest ingredients.&nbsp;</span><br style="color: rgb(20, 24, 35); font-family: helvetica, arial, sans-serif; line-height: 18.76px;"><span style="color: rgb(20, 24, 35); font-family: helvetica, arial, sans-serif; line-height: 18.76px;">No artificial flavors, preservatives, or colors are used. Am I right?</span><span class="text_exposed_show" style="display: inline; color: rgb(20, 24, 35); font-family: helvetica, arial, sans-serif; line-height: 18.76px;"><br></span>', '4-4-2016 7-59-14 AM.png'),
 (735, 'How about them Hooters Trail', '14130 Sullyfield Circle, Chantilly VA', '2016-04-12', 'Get ready for another Herpicles trail inspired by Hooters. &nbsp;', '4-5-2016 12-12-21 PM.png'),
 (736, 'The Boston Tea Party or Cream Party Trail', ' Start Location:  Behind Pender Professional Center 3901 Fair Ridge Dr, Fairfax, VA 22033.  It is the same shopping center as the Harris Teeter.  ', '2016-04-19', '<p dir="ltr" style="font-size:12.8px;line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style="color: rgb(20, 24, 35); font-family: Arial; white-space: pre-wrap; line-height: 1.38;">This trail is inspired by tax day and I Cunt Hear You&apos;s trip to the place were some revolution stuff happened (Boston) and people got their panties in a twist over some tea.&nbsp; I hope you wankers did your taxes like a true American.&nbsp; In order to truly appreciate what our taxes provide us as a collective citizenry we will: run on some roads, dodge some cops, get hit by drivers that have state issued licenses in cars that have passed their state safety inspections, and maybe trip, fall, and break something on publicly maintained land. </span></p><br style="font-size:12.8px"><p dir="ltr" style="font-size:12.8px;line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style="font-family: Arial; color: rgb(20, 24, 35); vertical-align: baseline; white-space: pre-wrap;">Hash cash is $5 and will not be subject to tax on this special trail!&nbsp; Dress up in your best revolution era attire, &apos;Merica themed wear, or favorite red coat. &nbsp;&nbsp;&nbsp;</span></p><br style="font-size:12.8px"><p dir="ltr" style="font-size:12.8px;line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style="font-family: Arial; color: rgb(20, 24, 35); vertical-align: baseline; white-space: pre-wrap;">Hares: I Cunt Hear You and Herpicles</span></p>', '4-12-2016 9-33-03 AM.png'),
-(737, 'The 10 Plagues of Egypt - Passover Trail', 'TBD', '2016-04-26', 'The 10 Plagues of Egypt', 'plagues.png'),
-(738, 'Mismanagment "Cinco Pub Crawl"', 'TBD', '2016-05-03', '<span style="color: rgb(20, 24, 35); font-family: helvetica, arial, sans-serif; line-height: 19.32px;">Trail #737: May 03 - Mismanagment "Cinco Pub Crawl" - McLean</span>', ''),
-(739, 'Fingrrrrrrr', 'Tyson&apos;s Corner, VA', '2016-05-10', 'No Information Provided', ''),
-(740, 'Bad Dog', 'Great Falls, VA', '2016-05-17', '<span style="color: rgb(20, 24, 35); font-family: helvetica, arial, sans-serif; font-size: 12px; line-height: 16.08px; background-color: rgb(246, 247, 248);">No Information Provided!</span>', '');
+(737, 'The 10 Plagues of Egypt - Passover Trail', 'Fairfax, VA', '2016-04-26', 'The 10 Plagues of Egypt', 'plagues.png'),
+(738, 'The "Anti-Cinco de Mayo Pub Crawl" Trail', 'McLean, VA', '2016-05-03', '<span style="color: rgb(20, 24, 35); line-height: 19.32px; font-family: helvetica, arial, sans-serif;">Trail #737: May 03 - Mismanagment "Cinco Pub Crawl" - McLean</span>', '4-27-2016 10-16-23 AM.png'),
+(739, 'The Leftovers trail', 'Tyson&apos;s Corner, VA', '2016-05-10', 'No Information Provided', '13096138_10209547567993134_7038657577896039066_n.jpg'),
+(740, 'Bad Dog', 'Great Falls, VA', '2016-05-17', '<span style="color: rgb(20, 24, 35); font-family: helvetica, arial, sans-serif; font-size: 12px; line-height: 16.08px; background-color: rgb(246, 247, 248);">No Information Provided!</span>', ''),
+(741, 'Hare: No Time To Wipe', 'Reston, VA', '2016-05-24', 'NEED HARES!!!', 'Virgins[1].jpg'),
+(742, 'AHHB Trail', 'TBD', '2016-05-31', 'NEED HARES!!!', ''),
+(743, 'S.H.I.T. - Tour Duh Hash', 'TBD', '2016-06-07', 'NEED HARES!!!', ''),
+(744, 'TBD', 'TBD', '2016-06-14', 'NEED HARES!!!', ''),
+(745, 'TBD', 'TBD', '2016-06-21', 'NEED HARES!!!', '');
 
 --
 -- Indexes for dumped tables

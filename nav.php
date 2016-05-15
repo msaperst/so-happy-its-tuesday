@@ -21,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-<!--                 <a class="navbar-brand" href="index.php"><img src='img/sohappytitlewlogo.jpg' height='50px;' /></a> -->
+<!--                 <a class="navbar-brand" href="index.php"><img src='img/sohappyits.png' height='50px;' /></a> -->
                 <a class="navbar-brand" href="index.php">Welcome</a>
             </div>
 
