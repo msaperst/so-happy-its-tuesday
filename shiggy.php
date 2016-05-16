@@ -51,7 +51,7 @@
 										first held in 1837.</font>
 								</p>
 								<p align="center">
-									<font face="Arial"><img src="images/harehounds.jpg" width="450"
+									<font face="Arial"><img src="img/harehounds.jpg" width="450"
 										height="364" alt=""></font>
 								</p>
 								<p>
