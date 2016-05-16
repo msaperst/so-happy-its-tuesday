@@ -20,6 +20,10 @@ section {
 	padding: 110px 0px !important;
 }
 
+.row ul,.row table {
+	font-size: 20px;
+}
+
 /* for the login */
 div#login-container {
     position: fixed;

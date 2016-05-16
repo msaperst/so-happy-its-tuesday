@@ -17,7 +17,7 @@
 					<hr class="star-light">
 				</div>
 			</div>
-			<div class="row">Coming Soon</div>
+			<div class="row"><p>Coming Soon</p></div>
 		</div>
 	</section>
 
@@ -664,7 +664,7 @@
 					<hr class="star-light">
 				</div>
 			</div>
-			<div class="row">Coming Soon</div>
+			<div class="row"><p>Coming Soon</p></div>
 		</div>
 	</section>
 

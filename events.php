@@ -8,21 +8,6 @@
 	
 	<?php require "nav.php"; ?>
     
-    <!-- Page Header -->
-	<!-- Set your background image for this header on the line below. -->
-	<!-- 	<header class="intro-header" style="background-image: url('img/group.jpg'); background-position-x: 50%; background-position-y: 30%; min-height: 550px;"> -->
-	<!-- 		<div class="container"> -->
-	<!-- 			<div class="row"> -->
-	<!-- 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"> -->
-	<!-- 					<div class="site-heading"> -->
-	<!-- 						<h1>So Happy It's Tuesday</h1> -->
-	<!-- 						<h3>Hash House Harriers</h3> -->
-	<!-- 					</div> -->
-	<!-- 				</div> -->
-	<!-- 			</div> -->
-	<!-- 		</div> -->
-	<!-- 	</header> -->
-    
     <?php
     // defaults
     $nextWeek ['image'] = "beer.jpg";
@@ -126,19 +111,18 @@
 					<div class="col-lg-12">
 						<h3>Trail <?php echo $nextWeek['number']; ?>: <?php echo $nextWeek['title']; ?></h3>
 						<h4>Hares: <?php echo implode(", ", $nextWeek['hares']); ?></h3>
-							<div class="col-lg-6">
-								<h4>Location: <?php echo $nextWeek['location']; ?></h4>
-							</div>
-							<div class="col-lg-6">
-								<h4>Date: <?php echo $nextWeek['date']; ?></h4>
-							</div>
-							<div>
+						<div class="col-lg-6">
+							<h4>Location: <?php echo $nextWeek['location']; ?></h4>
+						</div>
+						<div class="col-lg-6">
+							<h4>Date: <?php echo $nextWeek['date']; ?></h4>
+						</div>
+						<p>
 <!-- 							<div style='float: left; max-width: 300px;'>
 									<img src='img/<?php echo $nextWeek['image']; ?>' />
-								</div> -->
-                        	<?php echo $nextWeek['description']; ?>
-                        </div>
-					
+							</div> -->
+                    	<?php echo $nextWeek['description']; ?>
+                        </p>
 					</div>
 				</a>
 			</div>
@@ -327,7 +311,7 @@
 								<li><b>Display From</b>: <input id='viewAnnouncementFrom' type='date'/></li>
 								<li><b>Display To</b>: <input id='viewAnnouncementTo' type='date'/></li>
 							</ul>
-							<div id='viewAnnouncementDescription' class='text-left'></div>
+							<p id='viewAnnouncementDescription' class='text-left'></p>
 							<p>
 								<input id='viewAnnouncementHiddenID' type='hidden' />
 							</p>
