@@ -109,3 +109,8 @@
             </div>
         </div>
 	</div>
+	
+	<div id="bad-login-ui">
+    	<div id="bad-login-ui-close-div"><a href="javascript:void(0);"><i class="fa fa-remove" style="padding:2px;"></i></a></div>
+        </div>
+	</div>

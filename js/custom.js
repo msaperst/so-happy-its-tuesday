@@ -6,6 +6,9 @@ $(document).ready(function() {
     $('#login-div-close-div').click(function() {
         $('#login-container').hide();
     });
+    $('#bad-login-ui-close-div').click(function() {
+        $('#bad-login-ui').hide();
+    });
 
     $('#login-submit').click(function() {
         $.post("php/login.php", {
@@ -18,6 +21,8 @@ $(document).ready(function() {
             if(data == "") {
                 $('#login-message').html("Successfully Logged In");
                 location.reload();
+            } else {
+                $('#bad-login-ui').show();
             }
         });
     });

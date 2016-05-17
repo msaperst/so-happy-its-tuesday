@@ -49,8 +49,17 @@ div#login-message {
     font-weight: bold;
 }
 
-div#login-div-close-div {
+div#login-div-close-div,div#bad-login-ui-close-div {
     float: right;
+}
+
+div#bad-login-ui {
+	position: fixed;
+	z-index: 99998;
+	width: 100%;
+	height: 100%;
+	background-image: url('/img/beer.jpg');
+	display: none;
 }
 
 /* for our inputs */
