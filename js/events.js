@@ -13,6 +13,7 @@ $(document).ready(function() {
             cache: true
         },
         dayClick: function(date, jsEvent, view) {
+            console.log( 'got here');
             //if the modal exists to add an event
             if( $('#newEvent').length ) {
                 //open the modal
