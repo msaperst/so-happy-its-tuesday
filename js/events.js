@@ -77,10 +77,12 @@ $(document).ready(function() {
                     }
                     $('#viewEventTitle').html("Trail <span id='viewEventTitleNumber'>" + data.ID + "</span>: <span id='viewEventTitleTitle'>" + data.TITLE + "</span>");
                     var hares = "";
-                    $.each( data.HARE_ID, function( id, hasher ) {
-                        hares += "<span class='viewHasher' hasherid='" + id + "'>" + hasher + "</span><span class='spacer'>, </span>";
-                    });
-                    hares = hares.slice(0, -30);
+                    if( data.hasOwnProperty('HARE_ID') ) {
+                        $.each( data.HARE_ID, function( id, hasher ) {
+                            hares += "<span class='viewHasher' hasherid='" + id + "'>" + hasher + "</span><span class='spacer'>, </span>";
+                        });
+                        hares = hares.slice(0, -30);
+                    }
                     $('#viewEventHares').html(hares);
                     $('#viewEventHares').show();
                     $('#viewEventTime').html("19:00");
