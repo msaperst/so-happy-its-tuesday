@@ -2,10 +2,10 @@
 	$subject = $_POST['subject'];
 	$message = $_POST['message'];
 
-	$host = "ssl://smtp.verizon.net";
+	$host = "ssl://smtp.gmail.com";
 	$port = "465";
-	$username = "vze134ek8";
-	$password = "Burning1";
+	$username = "jackschitt.shit@gmail.com";
+	$password = "sohappyitstuesday";
 	
 	require_once "Mail.php";
 	require_once "Mail/mime.php";
