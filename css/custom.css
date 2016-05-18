@@ -24,16 +24,16 @@ section {
 	font-size: 20px;
 }
 
+/* logo for navbar */
 nav img#nav-logo {
     position: relative;
     height: 55px;
     top: -15px;
 }
-/* logo for navbar */
 @media (min-width: 768px) {
     nav img#nav-logo {
-	    height: 100px;
-	    top: -35px;
+	    height: 100px !important;
+	    top: -35px !important;
     }
 }
 
