@@ -63,7 +63,7 @@ define ( 'INTERNAL_FORMAT', 'Y-m-d' );
     $claimed_dates = array ();
     $available_dates = array ();
     while ( $row = mysqli_fetch_array ( $result ) ) {
-        $claimed_dates [] = $row ["HASHDATE"];
+        $claimed_dates [ $row ["ID"] ] = $row ["HASHDATE"];
     }
     $start_date = date ( INTERNAL_FORMAT );
     foreach ( range ( 0, 120 ) as $day ) {
