@@ -566,10 +566,44 @@ $(document).ready(function() {
     });
     
     $('.sign-up').click(function(){
-        console.log( "Not working yet" );
-        var date = $(this).closest('div').prev().html();
-        window.open('mailto:drcockulus@gmail.com?subject=I want to hare&body=I want Tuesday, '+date);
-    })
+        var nameInput = $("<input>");
+        nameInput.attr('placeholder','Name');
+        nameInput.attr('type','text');
+        nameInput.attr('required',true);
+        nameInput.addClass('sign-up-name form-control');
+        var emailInput = $("<input>");
+        emailInput.attr('placeholder','Email');
+        emailInput.attr('type','email');
+        emailInput.attr('required',true);
+        emailInput.addClass('sign-up-email form-control');
+        var numberInput = $("<input>");
+        numberInput.attr('placeholder','Phone');
+        numberInput.attr('type','tel');
+        numberInput.addClass('sign-up-number form-control');
+        var sendIcon = $("<i>");
+        sendIcon.addClass("fa fa-send");
+        var submitButton = $("<button>");
+        submitButton.addClass("sign-up-send btn btn-success");
+        submitButton.attr("title", "Send to Mis-Management");
+        submitButton.append(sendIcon).append(" Send to Mis-Management");
+        submitButton.click(function(){
+            var button = $(this);
+            $(this).attr('disabled','disabled');
+            var date = button.closest('div').prev().html();
+            var name = button.prev().prev().prev().val();
+            var email = button.prev().prev().val();
+            var number = button.prev().val();
+            var message = name + " wants to hare on " + date + ". \n\nEmail them back at " + email + " to confirm, and they can also be reached at " + number;
+            $.ajax({
+                type: "POST",
+                url: "php/email-mm.php",
+                data: { subject: "Someone wants to hare!", message: message }
+            }).done(function(){
+                button.closest('div').empty().append("<span class='success'>Message Sent</span>");
+            });
+        });
+        $(this).closest('div').empty().append(nameInput).append(emailInput).append(numberInput).append(submitButton);
+    });    
 
     loadAnnouncement();
 });

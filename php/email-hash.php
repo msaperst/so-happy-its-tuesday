@@ -20,8 +20,7 @@ $password = "sohappyitstuesday";
 require_once "Mail.php";
 require_once "Mail/mime.php";
 $from = "Jack Schitt <jackschitt.shit@gmail.com>";
-// $to = "SH*T Mismanagement <mismanagement_sohappy@yahoogroups.com>";
-$to = "SH*T Mismanagement <msaperst@gmail.com>";
+$to = "SH*T Wankers <so_happy_its_tuesday_h3@yahoogroups.com>";
 
 $crlf = "\n";
 
@@ -53,4 +52,5 @@ if (PEAR::isError ( $mail )) {
 } else {
     $error = "none";
 }
+echo $error;
 ?>

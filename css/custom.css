@@ -27,6 +27,11 @@ footer .row {
 	font-size: 15px !important;
 }
 
+span.success {
+	color: green;
+	font-weight: bold;
+}
+
 /* logo for navbar */
 nav img#nav-logo {
     position: relative;
