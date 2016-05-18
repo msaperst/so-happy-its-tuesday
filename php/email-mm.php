@@ -20,8 +20,8 @@ $password = "sohappyitstuesday";
 require_once "Mail.php";
 require_once "Mail/mime.php";
 $from = "Jack Schitt <jackschitt.shit@gmail.com>";
-// $to = "SH*T Mismanagement <mismanagement_sohappy@yahoogroups.com>";
-$to = "SH*T Mismanagement <msaperst@gmail.com>";
+$to = "SH*T Mismanagement <mismanagement_sohappy@yahoogroups.com>";
+// $to = "SH*T Mismanagement <msaperst@gmail.com>";
 
 $crlf = "\n";
 
