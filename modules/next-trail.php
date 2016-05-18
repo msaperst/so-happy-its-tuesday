@@ -4,7 +4,7 @@ $nextWeek ['image'] = "beer.jpg";
 $nextWeek ['id'] = "XXX";
 $nextWeek ['number'] = "TBD";
 $nextWeek ['title'] = "TBD";
-$nextWeek ['hares'] = "TBD";
+$nextWeek ['hares'] = array( "TBD" );
 $nextWeek ['location'] = "TBD";
 $nextWeek ['date'] = "TBD";
 $nextWeek ['description'] = "TBD";
@@ -53,17 +53,21 @@ if ($row = mysqli_fetch_array ( $result )) {
 // get hare details
 $sql = "SELECT c.HASHNAME FROM shit_hares b, shit_hashers c WHERE b.trl_id = " . $nextWeek ['id'] . " AND b.hshr_id = c.id";
 $result = mysqli_query ( $db, $sql );
-if ($row = mysqli_fetch_array ( $result )) {
-    do {
+if ($result === FALSE) {
+} else {
+    $hares = array();
+    while ( $row = mysql_fetch_array ( $result ) ) {
         $hares [] = $row ["HASHNAME"];
-    } while ( $row = mysqli_fetch_array ( $result ) );
+    }
     $nextWeek ['hares'] = $hares;
 }
 
 // get description
 $sql = 'SELECT TIDBIT, ADDRESS, DIRECTIONS, ONONON, NOTES, MAPLINK FROM shit_directions WHERE TRL_ID = ' . $nextWeek ['id'];
 $result = mysqli_query ( $db, $sql );
-if ($row = mysqli_fetch_array ( $result )) {
+if ($result === FALSE) {
+} else {
+    $row = mysqli_fetch_array ( $result );
     if ($row ["TIDBIT"] != "") {
         $nextWeek ['description'] = $row ["TIDBIT"];
     }
