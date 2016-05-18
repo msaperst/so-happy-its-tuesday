@@ -564,6 +564,12 @@ $(document).ready(function() {
         });
         $('#hasherModal').modal('hide');
     });
+    
+    $('.sign-up').click(function(){
+        console.log( "Not working yet" );
+        var date = $(this).closest('div').prev().html();
+        window.open('mailto:drcockulus@gmail.com?subject=I want to hare&body=I want Tuesday, '+date);
+    })
 
     loadAnnouncement();
 });

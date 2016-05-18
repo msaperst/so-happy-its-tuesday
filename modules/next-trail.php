@@ -56,7 +56,7 @@ $result = mysqli_query ( $db, $sql );
 if ($result === FALSE) {
 } else {
     $hares = array();
-    while ( $row = mysql_fetch_array ( $result ) ) {
+    while ( $row = mysqli_fetch_array ( $result ) ) {
         $hares [] = $row ["HASHNAME"];
     }
     $nextWeek ['hares'] = $hares;
@@ -90,12 +90,12 @@ if ($result === FALSE) {
 ?>
 
 <!-- Next Trail Section -->
-<section class="success" id="next-trail">
+<section id="next-trail">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<h2>Next Weeks Trail</h2>
-				<hr class="star-light">
+				<hr class="star-primary">
 			</div>
 		</div>
 		<div class="row">

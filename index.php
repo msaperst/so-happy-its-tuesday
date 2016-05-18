@@ -26,13 +26,13 @@
     <?php require "modules/next-trail.php"; ?>
 
     <!-- Welcome Section -->
-    <section id="welcome">
+    <section class="success" id="welcome">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Welcome</h2>
                     <h4>If your trails aren't live, your Hash ain't S.H.I.T.!</h4>
-                    <hr class="star-primary">
+                    <hr class="star-light">
                     <div class='text-left'>
                         <p>Welcome to the SH*T Hash. Looking for something to do on Tuesday nights? Well, look no further!</p>
     					<p>The S.H.I.T. H3 is one of thousands of social groups that like to run (or walk) and drink beer! We are a "Drinking Club with a Running Problem!" Our goal is to have a good time, meet new people and get a little exercise. For more information about the history of the hash, check out our History page.</p>

@@ -41,6 +41,9 @@
                                 <a href="<?php echo str_replace($url, "", "events.php"); ?>#announcements">Announcements</a>
                             </li>
                             <li class="page-scroll">
+                                <a href="<?php echo str_replace($url, "", "events.php"); ?>#open-dates">Open Trails</a>
+                            </li>
+                            <li class="page-scroll">
                                 <a href="<?php echo str_replace($url, "", "events.php"); ?>#events">Calendar</a>
                             </li>
                             <li class="page-scroll">

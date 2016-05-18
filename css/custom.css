@@ -20,8 +20,11 @@ section {
 	padding: 110px 0px !important;
 }
 
-.row ul,.row table {
+.row {
 	font-size: 20px;
+}
+footer .row {
+	font-size: 15px !important;
 }
 
 /* logo for navbar */

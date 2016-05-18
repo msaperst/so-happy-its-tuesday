@@ -3,6 +3,10 @@
 
 <?php require "php/sql.php"; ?>
 <?php require "header.php"; ?>
+<?php
+
+define ( 'INTERNAL_FORMAT', 'Y-m-d' );
+?>
 
 <body id="page-top" class="index">
 	
@@ -11,12 +15,12 @@
     <?php require "modules/next-trail.php"; ?>
 
 	<!-- Announcements Section -->
-	<section id="announcements">
+	<section class="success" id="announcements">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2>News</h2>
-					<hr class="star-primary">
+					<hr class="star-light">
 					<div class='text-left'>
 						<ul id='allAnnouncements'>
                             <?php
@@ -31,14 +35,58 @@
                     	</ul>
 					</div>
 					<?php
-                        if (isset ( $_SESSION ['id'] )) {
-                    ?>
-                    <button href="#newAnnouncementModal" data-toggle="modal" type="button" class="btn btn-default">
+    if (isset ( $_SESSION ['id'] )) {
+        ?>
+                    <button href="#newAnnouncementModal"
+						data-toggle="modal" type="button" class="btn btn-default">
 						<i class="fa fa-add"></i> Add An Announcement
 					</button>
                     <?php
-                        }
-                    ?>
+    }
+    ?>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Open Dates Section -->
+	<section id="open-dates">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2>Open Trails</h2>
+					<hr class="star-primary">
+					<div class='text-center' id='available-date'>
+						<?php
+    $sql = "SELECT * FROM shit_hares JOIN shit_trails ON shit_hares.TRL_ID = shit_trails.ID WHERE shit_hares.HSHR_ID !=  '239' AND shit_trails.HASHDATE >= CURRENT_DATE( ) GROUP BY shit_trails.HASHDATE ORDER BY shit_trails.HASHDATE ASC;";
+    $result = mysqli_query ( $db, $sql );
+    $claimed_dates = array ();
+    $available_dates = array ();
+    while ( $row = mysqli_fetch_array ( $result ) ) {
+        $claimed_dates [] = $row ["HASHDATE"];
+    }
+    $start_date = date ( INTERNAL_FORMAT );
+    foreach ( range ( 0, 120 ) as $day ) {
+        $internal_date = date ( INTERNAL_FORMAT, strtotime ( "{$start_date} + {$day} days" ) );
+        $this_day = date ( INTERNAL_FORMAT, strtotime ( $internal_date ) );
+        $this_month = date ( 'M Y', strtotime ( $internal_date ) );
+        if (isTuesday ( $internal_date ) && ! in_array ( $internal_date, $claimed_dates )) {
+            $available_dates [$this_month] [] = $this_day;
+        }
+    }
+    if (! empty ( $available_dates )) {
+        foreach ( current ( $available_dates ) as $day ) {
+            echo "<div class='row'><div class='col-sm-3'></div><div class='col-sm-3 text-left'>";
+            echo date( 'F j, Y', strtotime( $day ) );
+            echo "</div><div class='col-sm-3 text-left'>";
+            echo "<a class='sign-up' href='javascript:void(0);'>Sign Up To Hare</a>";
+            echo "</div><div class='col-sm-3'></div></div>";
+        }
+    } else {
+        echo "<p>Sorry, we're all filled up. Wait until next the next month opens to sign up</p>";
+    }
+    ?>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -58,8 +106,8 @@
 			</div>
 		</div>
 	</section>
-	
-    <!-- Hare Log Section -->
+
+	<!-- Hare Log Section -->
 	<section id="harelog">
 		<div class="container">
 			<div class="row">
@@ -113,8 +161,8 @@
                 	<?php
                 if (isset ( $_SESSION ['id'] )) {
                     ?>
-                    <button href="#hasherModal" data-toggle="modal" id="addHasher" type="button"
-						class="btn btn-default">
+                    <button href="#hasherModal" data-toggle="modal"
+						id="addHasher" type="button" class="btn btn-default">
 						<i class="fa fa-add"></i> Add Hasher
 					</button>
                     <?php
@@ -140,9 +188,12 @@
 						<div class="modal-body">
 							<h2 id='viewAnnouncementTitle'></h2>
 							<hr class="star-primary">
-							<ul id='viewAnnouncementToFrom' class="list-inline item-details hidden">
-								<li><b>Display From</b>: <input id='viewAnnouncementFrom' type='date'/></li>
-								<li><b>Display To</b>: <input id='viewAnnouncementTo' type='date'/></li>
+							<ul id='viewAnnouncementToFrom'
+								class="list-inline item-details hidden">
+								<li><b>Display From</b>: <input id='viewAnnouncementFrom'
+									type='date' /></li>
+								<li><b>Display To</b>: <input id='viewAnnouncementTo'
+									type='date' /></li>
 							</ul>
 							<p id='viewAnnouncementDescription' class='text-left'></p>
 							<p>
@@ -160,8 +211,8 @@
 								type="button" class="btn btn-default">
 								<i class="fa fa-edit"></i> Edit
 							</button>
-                            <button id='viewAnnouncementSave'
-								type="button" class="btn btn-default hidden">
+							<button id='viewAnnouncementSave' type="button"
+								class="btn btn-default hidden">
 								<i class="fa fa-save"></i> Save
 							</button>
 							<button id='viewAnnouncementDelete' type="button"
@@ -178,11 +229,11 @@
 			</div>
 		</div>
 	</div>
-    
-    <!-- Add trail/event modal -->
+
+	<!-- Add trail/event modal -->
     <?php
-        if (isset ( $_SESSION ['id'] )) {
-    ?>
+    if (isset ( $_SESSION ['id'] )) {
+        ?>
     <div class="portfolio-modal modal fade" id="newEvent" tabindex="-1"
 		role="dialog" aria-hidden="true">
 		<div class="modal-content">
@@ -208,10 +259,11 @@
 							</h2>
 							<hr class="star-primary">
 							<h4 id='trail-hares'>
-								Hares:
-								<span name='hares' id='hares' class='holder'></span>
-								<div><input type='text' value='' placeholder='Find a hare'
-									class='searcher' /></div>
+								Hares: <span name='hares' id='hares' class='holder'></span>
+								<div>
+									<input type='text' value='' placeholder='Find a hare'
+										class='searcher' />
+								</div>
 							</h4>
 							<ul class="list-inline item-details">
 								<li><b>Location</b>: <input id='location' type='text' value='' /></li>
@@ -257,8 +309,8 @@
 			</div>
 		</div>
 	</div>
-    
-    <!-- Add Announcement modal -->
+
+	<!-- Add Announcement modal -->
 	<div class="portfolio-modal modal fade" id="newAnnouncementModal"
 		tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-content">
@@ -271,13 +323,18 @@
 				<div class="row">
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="modal-body">
-							<h2 id='newAnnouncementTitle'><input type='text'></h2>
+							<h2 id='newAnnouncementTitle'>
+								<input type='text'>
+							</h2>
 							<hr class="star-primary">
 							<ul id='newAnnouncementToFrom' class="list-inline item-details">
-								<li><b>Display From</b>: <input id='newAnnouncementFrom' type='date'/></li>
-								<li><b>Display To</b>: <input id='newAnnouncementTo' type='date'/></li>
+								<li><b>Display From</b>: <input id='newAnnouncementFrom'
+									type='date' /></li>
+								<li><b>Display To</b>: <input id='newAnnouncementTo' type='date' /></li>
 							</ul>
-							<div id='newAnnouncementDescription' class='text-left'><textarea></textarea></div>
+							<div id='newAnnouncementDescription' class='text-left'>
+								<textarea></textarea>
+							</div>
 							<p>
 								<input id='newAnnouncementHiddenID' type='hidden' />
 							</p>
@@ -286,8 +343,8 @@
 								data-dismiss="modal">
 								<i class="fa fa-times"></i> Close
 							</button>
-                            <button id='newAnnouncementSave'
-								type="button" class="btn btn-default">
+							<button id='newAnnouncementSave' type="button"
+								class="btn btn-default">
 								<i class="fa fa-save"></i> Save
 							</button>
 						</div>
@@ -297,7 +354,7 @@
 		</div>
 	</div>
     <?php
-        }
+    }
     ?>
     
     
@@ -316,17 +373,21 @@
 						<div class="modal-body">
 							<h2 id='viewEventTitle'></h2>
 							<hr class="star-primary">
-							<h4>Hares: 
-								<span name='viewEventHares' id='viewEventHares' class='holder'></span>
-								<div class='hidden'><input type='text' value='' placeholder='Find a hare'
-										class='searcher' /></div>
+							<h4>
+								Hares: <span name='viewEventHares' id='viewEventHares'
+									class='holder'></span>
+								<div class='hidden'>
+									<input type='text' value='' placeholder='Find a hare'
+										class='searcher' />
+								</div>
 							</h4>
 							<ul id='viewEventDetailsList' class="list-inline item-details">
 								<li><b>Location</b>: <span id='viewEventLocation'></span></li>
 								<li><b>Date</b>: <span id='viewEventDate'></span></li>
 								<li><b>Time</b>: <span id='viewEventTime'></span></li>
 							</ul>
-							<ul id='viewEventDetailsList2' class="list-inline item-details hidden">
+							<ul id='viewEventDetailsList2'
+								class="list-inline item-details hidden">
 								<li><b>Map Link</b>: <span id='viewEventMap'></span></li>
 							</ul>
 							<div class='text-left'>
@@ -364,7 +425,7 @@
 								class="btn btn-default">
 								<i class="fa fa-edit"></i> Edit
 							</button>
-                            <button id='viewEventSave' type="button"
+							<button id='viewEventSave' type="button"
 								class="btn btn-default hidden">
 								<i class="fa fa-save"></i> Save
 							</button>
@@ -381,13 +442,13 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Add Hasher modal -->
     <?php
     if (isset ( $_SESSION ['id'] )) {
         ?>
-	<div class="portfolio-modal modal fade" id="hasherModal"
-		tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="portfolio-modal modal fade" id="hasherModal" tabindex="-1"
+		role="dialog" aria-hidden="true">
 		<div class="modal-content">
 			<div class="close-modal" data-dismiss="modal">
 				<div class="lr">
@@ -399,44 +460,55 @@
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="modal-body">
 							<h2 class="col-md-12">
-								<input id='hashName' class='form-control' placeholder='Hash Name' type='text' />
+								<input id='hashName' class='form-control'
+									placeholder='Hash Name' type='text' />
 							</h2>
 							<h4 class="col-md-12">
-								<input id='nerdName' class='form-control' placeholder='Nerd Name' type='text' />
+								<input id='nerdName' class='form-control'
+									placeholder='Nerd Name' type='text' />
 							</h4>
 							<div class='class-left'>
-    							<div class="col-md-6">
-    				                <input id="email" class='form-control' placeholder='Email Address' type="email" />
-    				            </div>
-    							<div class="col-md-6">
-    				                <input id="phone" class='form-control' placeholder='Phone Number' type="tel" />
-    				            </div>
-    							<div class="col-md-12">
-    				                <input id="address" class='form-control' placeholder='Street Address' type="text" />
-    				            </div>
-    							<div class="col-md-4">
-    				                <input id="city" class='form-control' placeholder='City' type="text" />
-    				            </div>
-    							<div class="col-md-4">
-    				                <input id="state" class='form-control' placeholder='State' type="text" />
-    				            </div>
-    							<div class="col-md-4">
-    				                <input id="zip" class='form-control' placeholder='Zip Code' type="text" />
-    				            </div>
-    							<p>
-    								<input id='hasher-id' type='hidden' />
-    							</p>
+								<div class="col-md-6">
+									<input id="email" class='form-control'
+										placeholder='Email Address' type="email" />
+								</div>
+								<div class="col-md-6">
+									<input id="phone" class='form-control'
+										placeholder='Phone Number' type="tel" />
+								</div>
+								<div class="col-md-12">
+									<input id="address" class='form-control'
+										placeholder='Street Address' type="text" />
+								</div>
+								<div class="col-md-4">
+									<input id="city" class='form-control' placeholder='City'
+										type="text" />
+								</div>
+								<div class="col-md-4">
+									<input id="state" class='form-control' placeholder='State'
+										type="text" />
+								</div>
+								<div class="col-md-4">
+									<input id="zip" class='form-control' placeholder='Zip Code'
+										type="text" />
+								</div>
+								<p>
+									<input id='hasher-id' type='hidden' />
+								</p>
 							</div>
-							<p><hr></p>
 							<p>
-    							<button type="button" class="btn btn-default"
-    								data-dismiss="modal">
-    								<i class="fa fa-times"></i> Close
-    							</button>
-    							<button id='hasherSave' type="button"
-    								class="btn btn-default">
-    								<i class="fa fa-save"></i> Save
-    							</button>
+							
+							
+							<hr>
+							</p>
+							<p>
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">
+									<i class="fa fa-times"></i> Close
+								</button>
+								<button id='hasherSave' type="button" class="btn btn-default">
+									<i class="fa fa-save"></i> Save
+								</button>
 							</p>
 						</div>
 					</div>
@@ -472,3 +544,11 @@
 <?php mysqli_close($db); ?>
 
 </html>
+
+
+<?php
+// Some basic PHP functions used in some of our calculations
+function isTuesday($date) {
+    return date ( 'w', strtotime ( $date ) ) === '2';
+}
+?>
