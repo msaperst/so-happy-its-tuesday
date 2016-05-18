@@ -46,9 +46,11 @@ $(document).ready(function() {
                         $('#number').val(data);
                     });
                 } else {    //assume event
+                    $('#hares').hide();
                     $('#trail-title').hide();
                     $('#trail-hares').hide();
                     $('#trail-map').hide();
+                    $('#start').hide();
                     $('#trail-ononon').hide();
                     $('#trail-notes').hide();
                     $('#add-what').val('e');
