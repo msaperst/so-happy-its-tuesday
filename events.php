@@ -8,6 +8,13 @@
 define ( 'INTERNAL_FORMAT', 'Y-m-d' );
 ?>
 
+<link
+	href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.0/fullcalendar.min.css"
+	rel="stylesheet" type="text/css">
+<link href="css/hashers.min.css" rel="stylesheet" type="text/css">
+<link href="wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css">
+
+
 <body id="page-top" class="index">
 	
 	<?php require "nav.php"; ?>
@@ -63,7 +70,7 @@ define ( 'INTERNAL_FORMAT', 'Y-m-d' );
     $claimed_dates = array ();
     $available_dates = array ();
     while ( $row = mysqli_fetch_array ( $result ) ) {
-        $claimed_dates [ $row ["ID"] ] = $row ["HASHDATE"];
+        $claimed_dates [$row ["ID"]] = $row ["HASHDATE"];
     }
     $start_date = date ( INTERNAL_FORMAT );
     foreach ( range ( 0, 120 ) as $day ) {
@@ -77,7 +84,7 @@ define ( 'INTERNAL_FORMAT', 'Y-m-d' );
     if (! empty ( $available_dates )) {
         foreach ( current ( $available_dates ) as $day ) {
             echo "<div class='row'><div class='col-sm-3'></div><div class='col-sm-3 text-left'>";
-            echo date( 'F j, Y', strtotime( $day ) );
+            echo date ( 'F j, Y', strtotime ( $day ) );
             echo "</div><div class='col-sm-3 text-left'>";
             echo "<a class='sign-up' href='javascript:void(0);'>Sign Up To Hare</a>";
             echo "</div><div class='col-sm-3'></div></div>";
@@ -531,13 +538,13 @@ define ( 'INTERNAL_FORMAT', 'Y-m-d' );
     
     <script
 		src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.0/fullcalendar.min.js"></script>
-	<link
-		href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.0/fullcalendar.min.css"
-		rel="stylesheet" type="text/css">
+	
 	<script src="js/hashers.min.js"></script>
-	<link href="css/hashers.min.css" rel="stylesheet" type="text/css">
 	<script src="js/events.min.js"></script>
-	<script src="js/jquery.confirm.min.js"></script>
+	<script src="plugins/jquery.confirm.min.js"></script>
+	<script src="wysihtml5/wysihtml5x-toolbar.min.js"></script>
+	<script src="wysihtml5/handlebars.runtime.min.js"></script>
+	<script src="wysihtml5/bootstrap3-wysihtml5.min.js"></script>
 
 </body>
 

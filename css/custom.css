@@ -121,3 +121,20 @@ td.delete {
 	position: absolute;
 	right: 20px;
 }
+
+/* for our editor */
+.wysihtml5-toolbar .btn {
+	padding: 6px 9px;
+	font-size: 13px;
+	line-height: 1.5;
+	border-radius: 3px;
+}
+
+ul.wysihtml5-toolbar>li {
+	margin: 0 5px 0 0 !important;
+}
+
+ul.wysihtml5-toolbar {
+	background-color: lightgray;
+	padding: 2px !important;
+}

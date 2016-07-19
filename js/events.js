@@ -314,6 +314,13 @@ $(document).ready(function() {
             editTitle.val($('#viewEventTitle').html());
             $('#viewEventTitle').empty().append(editTitle);
         }
+        
+        $('textarea').wysihtml5({
+            toolbar: {
+                fa: true,
+                size: "xs"
+            }
+        });
     });
     $('#viewEventSave').confirm({
         text: "Are you sure you want to save your changes to this event?",
@@ -380,6 +387,13 @@ $(document).ready(function() {
         var descriptionInput = $("<textarea>");
         descriptionInput.val(oldDescription);
         $('#viewAnnouncementDescription').html(descriptionInput);
+        
+        $('textarea').wysihtml5({
+            toolbar: {
+                fa: true,
+                size: "xs"
+            }
+        });
     });
     $('#viewAnnouncementDelete').confirm({
         text: "Are you sure you want to delete this announcement?",
@@ -606,6 +620,13 @@ $(document).ready(function() {
     });    
 
     loadAnnouncement();
+    
+    $('textarea').wysihtml5({
+        toolbar: {
+            fa: true,
+            size: "xs"
+        }
+    });
 });
 function loadAnnouncement() {
     $(".loadAnnouncement").click(function(){
