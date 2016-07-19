@@ -318,6 +318,7 @@ $(document).ready(function() {
         $('textarea').wysihtml5({
             toolbar: {
                 fa: true,
+                html: true,
                 size: "xs"
             }
         });
@@ -391,6 +392,7 @@ $(document).ready(function() {
         $('textarea').wysihtml5({
             toolbar: {
                 fa: true,
+                html: true,
                 size: "xs"
             }
         });
@@ -624,6 +626,7 @@ $(document).ready(function() {
     $('textarea').wysihtml5({
         toolbar: {
             fa: true,
+            html: true,
             size: "xs"
         }
     });
