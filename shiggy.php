@@ -92,43 +92,43 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 text-center bg-info">
 					<h3>Markings</h3>
 				</div>
-				<div class="col-md-3 col-sm-6 text-center">
+				<div class="col-md-3 col-sm-6 text-center symbols">
 					<h4>Intersections</h4>
 					<p>Three puffs of flour in a triangle</p>
 					<img src="/img/markings/inter1.gif" alt="intersection" />
 				</div>
-				<div class="col-md-3 col-sm-6 text-center">
+				<div class="col-md-3 col-sm-6 text-center symbols">
 					<h4>Bad Trail</h4>
 					<p>Three parallel lines</p>
 					<img src="/img/markings/false1.gif" alt="bad trail" />
 				</div>
-				<div class="col-md-3 col-sm-6 text-center">
+				<div class="col-md-3 col-sm-6 text-center symbols">
 					<h4>Check Back</h4>
 					<p>A check symbol and a number</p>
 					<img src="/img/markings/checkback.gif" alt="check back" />
 				</div>
-				<div class="col-md-3 col-sm-6 text-center">
+				<div class="col-md-3 col-sm-6 text-center symbols">
 					<h4>Beer Check</h4>
 					<p>The letter "B" in a wth a check to the RIGHT</p>
 					<img src="/img/markings/beercheck.gif" alt="beercheck" />
 				</div>
 				
-				<div class="col-md-3 col-sm-6 text-center">
+				<div class="col-md-3 col-sm-6 text-center symbols">
 					<h4>True Trail All</h4>
 					<p>An arrow with three lines through it</p>
-					<img src="/img/markings/true trail.gif" alt="true trail" />
+					<img src="/img/markings/truetrail.gif" alt="true trail" />
 				</div>
-				<div class="col-md-3 col-sm-6 text-center">
+				<div class="col-md-3 col-sm-6 text-center symbols">
 					<h4>True Trail Runners</h4>
 					<p>The letter "L" with an arrow <a href='https://www.youtube.com/watch?v=Msic27oUgYY' target='_blank'>head</a></p>
 					<img src="/img/markings/long.gif" alt="true trail runners" />
 				</div>
-				<div class="col-md-3 col-sm-6 text-center">
+				<div class="col-md-3 col-sm-6 text-center symbols">
 					<h4>True Trail Walkers</h4>
 					<p>The letter "W" with an arrow <a href='http://www.horntip.com/mp3/fieldwork/horntip_collection/t/tom_tarka/2004-05-07/head_who_said_head_(with_extra_verse).htm' target='_blank'>head</a></p>
 					<img src="/img/markings/walkers.gif" alt="true trail walkers" />
 				</div>
-				<div class="col-md-3 col-sm-6 text-center">
+				<div class="col-md-3 col-sm-6 text-center symbols">
 					<h4>Beer Near</h4>
 					<p>The letters "BN"</p>
 					<img src="/img/markings/beer2.gif" alt="beer near" />
