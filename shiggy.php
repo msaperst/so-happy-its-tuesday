@@ -92,6 +92,8 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 text-center bg-info">
 					<h3>Markings</h3>
 				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-3 col-sm-6 text-center symbols">
 					<h4>Intersections</h4>
 					<p>Three puffs of flour in a triangle</p>
@@ -112,7 +114,8 @@
 					<p>The letter "B" in a wth a check to the RIGHT</p>
 					<img src="/img/markings/beercheck.gif" alt="beercheck" />
 				</div>
-				
+			</div>
+			<div class="row">
 				<div class="col-md-3 col-sm-6 text-center symbols">
 					<h4>True Trail All</h4>
 					<p>An arrow with three lines through it</p>
