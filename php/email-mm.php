@@ -53,4 +53,5 @@ if (PEAR::isError ( $mail )) {
 } else {
     $error = "none";
 }
+echo $error;
 ?>
