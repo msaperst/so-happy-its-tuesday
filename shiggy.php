@@ -236,8 +236,6 @@
 						the Tidewater region</li>
 					<li><a href="http://dchashing.net/dcreddress/index.html">DC Red
 							Dress Run</a> - Annual hash which runs in October</li>
-					<li><a href="http://www.onon.com/">OnOn.com</a> - Worldwide Hasher
-						Forums</li>
 					<li><a href="http://www.worldharrierorganization.com/">World
 							Harrier Organization</a></li>
 				</ul>
